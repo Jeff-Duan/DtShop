@@ -1,0 +1,169 @@
+<%@ page language="java" import="java.util.*" import="model.Manager" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<!-- dwb修改：去掉不存在的功能 -->
+<html>
+    <%
+    Manager manager=(Manager)request.getAttribute("manager");
+          
+      %>
+	<head>
+		<meta charset="UTF-8">
+		<title>后台管理</title>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/after/themes/default/easyui.css" />
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/after/themes/icon.css" />
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/after/demo.css" />
+		<link href="${pageContext.request.contextPath}/static/css/after/adminStyle.css" rel="stylesheet" type="text/css" />
+		<script src="${pageContext.request.contextPath}/static/js/after/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="${pageContext.request.contextPath}/static/js/after/jquery.easyui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="${pageContext.request.contextPath}/static/js/after/public.js" type="text/javascript" charset="utf-8"></script>
+
+		<style>
+			a {
+				text-decoration: none;
+			}
+		</style>
+	</head>
+	<style type="text/css">
+		body {
+			margin: 0px;
+			padding: 0px;
+		}
+		
+		ul li {
+			align-content: center;
+		}
+		
+ 		.easyui-menubutton:hover {
+			background-color: #3d3d3d;
+			border: none;
+		}
+	</style>
+
+	<body class="easyui-layout">
+		<div data-options="region:'north',border:false" style="height:60px" frameborder="no" scrolling="no">
+			<div class="header" frameborder="no" scrolling="no">
+				<div class="logo" >
+					<img src="${pageContext.request.contextPath}/static/img/after/48.png" title="梦之队" />
+					<!--<img src="images/智慧后勤管理平台.png" />-->
+				</div>
+				<div style="float: right">
+					<div id="poople" style="float: left;padding: 20px 20px 0px 10px;">您好!:${manager.realname}</div>
+					<div class="easyui-panel" style="width: 120px;height:60px;background:#3d3d3d;" data-options="border:false">
+						<img src="${pageContext.request.contextPath}/static/img/after/hjl.png" />
+						<a href="#" class="easyui-menubutton" data-options="menu:'#mm2'" style="height: 58px;color: white;background-color: #3d3d3d;border: none">个人中心</a>
+					</div>
+				</div>
+				<div id="mm2" class="menu-content" style="width:100px;color: white;background-color: #3d3d3d;border: none;">
+
+					<ul class="menu-children">
+						<li>
+							<a href="${pageContext.request.contextPath}/queryGoodServlet" title="商品列表" target="main">个人信息</a>
+						</li>
+						<li>
+							<a href="edit_product.html" title="修改信息" target="main">修改信息</a>
+						</li>
+						<li>
+							<a href="afterlogin.jsp" title="安全退出" target="main">安全退出</a>
+						</li>
+					</ul>
+
+				</div>
+			</div>
+
+		</div>
+		<!--<div data-options="region:'south',split:true" style="height:50px;"></div>-->
+		<div data-options="region:'west',border:false" style="width:200px; background-color: #313131;overflow: hidden">
+
+			<div class="menu-list">
+				<a href="main.html" target="main" class="block menu-list-title center" style="margin-bottom:8px;color:#fff;">起始页</a>
+				<ul>
+					<li class="menu-list-title">
+						<span>订单管理</span>
+						<i>◢</i>
+					</li>
+					<li>
+						<ul class="menu-children">
+							<li>
+								<a href="${pageContext.request.contextPath}/QueryOrderServlet" title="商品列表" target="main">订单列表</a>
+							</li>
+							
+						</ul>
+					</li>
+
+					<li class="menu-list-title">
+						<span>商品管理</span>
+						<i>◢</i>
+					</li>
+					<li>
+						<ul class="menu-children">
+							<li>
+								<a href="${pageContext.request.contextPath}/queryGoodServlet" title="商品列表" target="main">商品列表</a>
+							</li>
+							<li>
+								<a href="${pageContext.request.contextPath}/AfterJsp/add_product.jsp" title="商品添加" target="main">商品添加</a>
+							</li>
+							<li>
+								<a href="${pageContext.request.contextPath}/queryRecoverGoodServlet" title="商品分类" target="main">商品回收站</a>
+							</li>
+						</ul>
+					</li>
+
+					<li class="menu-list-title">
+						<span>用户管理</span>
+						<i>◢</i>
+					</li>
+					<li>
+						<ul class="menu-children">
+							<li>
+								<a href="${pageContext.request.contextPath}/QueryUserServlet" title="会员列表" target="main">会员列表</a>
+							</li>
+							
+						</ul>
+					</li>
+
+					<li class="menu-list-title">
+						<span>系统设置</span>
+						<i>◢</i>
+					</li>
+					<li>
+						<ul class="menu-children">
+							<li>
+								<a href="admin_list.html" title="管理员列表" target="main">管理员列表</a>
+							</li>
+							<li>修改密码</li>
+							<li>修改信息</li>
+							<li>人员变动</li>
+						</ul>
+					</li>
+
+					<li class="menu-list-title">
+						<span>其他设置</span>
+						<i>◢</i>
+					</li>
+					<li>
+						<ul class="menu-children">
+							<li>合作企业</li>
+							<li>联系我们</li>
+							<li>管理员修改密码</li>
+
+						</ul>
+					</li>
+				</ul>
+
+			</div>
+
+		</div>
+
+		<div data-options="region:'center',border:false" >
+			<div id="mytabs" class="easyui-tabs" data-options="fit:true">
+				<iframe name="main" src="${pageContext.request.contextPath}/AfterJsp/main.jsp" height="100%" width="100%" frameborder="0"  style="background-color: white;"></iframe>
+
+			</div>
+		</div>
+	
+
+	</body>
+
+
+</html>

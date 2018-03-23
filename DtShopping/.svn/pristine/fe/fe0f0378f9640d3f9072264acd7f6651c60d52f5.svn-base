@@ -1,0 +1,90 @@
+package dao;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import model.Good;
+import model.User;
+import utils.odbcUtils;
+/**
+ * @author dwb已迁出
+ * 锟斤拷锟捷ｏ拷锟斤拷user锟斤拷锟叫诧拷询锟斤拷锟皆憋拷锟教拷锟绞癸拷锟�
+ */
+public class UserDaoImpl {
+	public User login(Object[] obj){
+		String sql = "select * from dt_user where email=? and password=?";
+		ArrayList<HashMap<String, Object>> list = odbcUtils.executeQuery(sql, obj);
+		odbcUtils.close();
+		User user = null;
+		if (list.size()>0) {
+			HashMap map= list.get(0);
+			user = new User();
+			user.setUser_id(String.valueOf(map.get("user_id")));
+			user.setEmail(String.valueOf(map.get("email")));
+			user.setPassword(String.valueOf(map.get("password")));
+			user.setState(String.valueOf(map.get("state")));
+			user.setRealname(String.valueOf(map.get("realname")));
+			user.setBirthday(String.valueOf(map.get("birthday")));
+			user.setSex(String.valueOf(map.get("sex")));
+			user.setTelphone(String.valueOf(map.get("telphone")));
+			user.setPicture(String.valueOf(map.get("picture")));
+			user.setUsername(String.valueOf(map.get("username")));
+			System.out.println("登录ID"+user.getUser_id());
+		}
+		return user;
+	}
+	public User phologin(Object[] obj){
+		String sql = "select * from dt_user where telphone=?";
+		ArrayList<HashMap<String, Object>> list = odbcUtils.executeQuery(sql, obj);
+		odbcUtils.close();
+		User user = null;
+		if (list.size()>0) {
+			HashMap map= list.get(0);
+			user = new User();
+			user.setUser_id(String.valueOf(map.get("user_id")));
+			user.setEmail(String.valueOf(map.get("email")));
+			user.setPassword(String.valueOf(map.get("password")));
+			user.setState(String.valueOf(map.get("state")));
+			user.setRealname(String.valueOf(map.get("realname")));
+			user.setBirthday(String.valueOf(map.get("birthday")));
+			user.setSex(String.valueOf(map.get("sex")));
+			user.setTelphone(String.valueOf(map.get("telphone")));
+			user.setPicture(String.valueOf(map.get("picture")));
+			user.setUsername(String.valueOf(map.get("username")));
+			System.out.println("登录ID"+user.getUser_id());
+		}
+		return user;
+	}
+	public int register(User user) {
+		int i = 0;
+		String sql = "insert into dt_user(password,email,state) values (?,?,?)";
+		Object [] params={user.getPassword(),user.getEmail(),1};
+		i=odbcUtils.executeUpdate(sql, params);
+		odbcUtils.close();
+		System.out.println("houtai"+i);
+		return i;
+	}
+	public User backpass(Object[] obj){
+		String sql = "select * from dt_user where email=?";
+		ArrayList<HashMap<String, Object>> list = odbcUtils.executeQuery(sql, obj);
+		odbcUtils.close();
+		User user = null;
+		if (list.size()>0) {
+			HashMap map= list.get(0);
+			user = new User();
+			user.setEmail(String.valueOf(map.get("email")));
+		}
+		return user;
+	} 
+	public int updatepass(User user) {
+		int i = 0;
+		String sql = "update dt_user set password=? where email=?";
+		Object [] params={user.getPassword(),user.getEmail()};
+		i=odbcUtils.executeUpdate(sql, params);
+		odbcUtils.close();
+		System.out.println(i);
+		return i;
+	}
+	
+}

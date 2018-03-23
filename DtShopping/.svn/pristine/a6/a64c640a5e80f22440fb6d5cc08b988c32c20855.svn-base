@@ -1,0 +1,54 @@
+<%@ page language="java"  import="java.util.*" import="model.User"  contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib  uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>会员列表</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="${pageContext.request.contextPath}/static/css/after/adminStyle.css" rel="stylesheet" type="text/css" />
+<script src="${pageContext.request.contextPath}/static/js/after/jquery.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/after/public.js"></script>
+</head>
+<body>
+ <div class="wrap">
+  <div class="page-title">
+    <span class="modular fl"><i class="user"></i><em>会员列表</em></span>
+   
+  </div>
+  <div class="operate">
+   <form action="QueryUseridServlet" method="post">
+    <input type="text" class="textBox length-long" name="id" placeholder="输入会员编号"/>
+    <input type="submit" value="查询" class="tdBtn"/>
+   </form>
+  </div>
+  <table class="list-style Interlaced">
+   <tr>
+     <th>编号</th>
+     <th>账号</th>
+     <th>密码</th>
+     <th>真实姓名</th>
+     <th>邮箱</th>
+     </tr>
+   <c:forEach items="${manager}" var="i" >
+   <tr>
+   
+    <td class="center">${i.managerid}</td>
+    <td class="center">${i.username}</td>
+    <td class="center">${i.password}</td>
+    <td class="center">${i.realname}</td>
+    <td class="center">${i.email}</td>
+    <td class="center">
+    <a href="${pageContext.request.contextPath}/UserBackServlet?id=${i.user_id}" class="inline-block" title="编辑"><img src="${pageContext.request.contextPath}/static/img/after/icon_edit.gif"/></a>
+    </td>
+   </tr>
+   </c:forEach>
+   
+   </tr>
+  </table>
+  <!-- BatchOperation -->
+  <div style="overflow:hidden;">
+  </div>
+ </div>
+</body>
+</html>html>

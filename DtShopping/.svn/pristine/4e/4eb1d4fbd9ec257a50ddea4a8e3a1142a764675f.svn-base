@@ -1,0 +1,38 @@
+package afteraction;
+
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import model.User;
+import service.QueryUpdateService;
+import service.UserServiceImpl;
+/**
+ * 
+ * @author dwb
+ * 对用户查询的servlet
+ *
+ */
+
+@WebServlet("/QueryUserServlet")
+public class QueryUserServlet extends HttpServlet {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		QueryUpdateService qus=new QueryUpdateService();
+		List list=qus.QueryUser();
+			try {
+				request.setAttribute("user", list);
+				request.getRequestDispatcher("/AfterJsp/user_list.jsp").forward(request, response);
+				} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("查询失败");
+				}	
+		}
+		
+}
+
+

@@ -1,0 +1,45 @@
+package dao;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import model.Manager;
+import utils.odbcUtils;
+
+public class ManagerDaoImpl {
+	public List queryManager(String manangeid,String permission){
+		List<Manager> list=null;
+		ArrayList<HashMap<String, Object>> list1=null;
+		Object [] params={manangeid};
+		String sql=" select * from dt_manager ";
+		String sql1=" select * from dt_manager where manager_id=? ";
+		if(Integer.parseInt(permission)==1){
+			list1=odbcUtils.executeQuery(sql, null);
+		}else{
+			list1=odbcUtils.executeQuery(sql1, params);
+		}
+		odbcUtils.close();
+		if(list1.size()>0){
+			Manager manager=null;
+			list=new ArrayList<Manager>();
+			for(int i=0;i<list1.size();i++){
+				manager=new Manager();
+				HashMap map=list1.get(i);
+				manager.setManagerid(String.valueOf(map.get("manager_id")));
+				manager.setUsername(String.valueOf(map.get("username")));
+				manager.setPassword(String.valueOf(map.get("password")));
+				manager.setRealname(String.valueOf(map.get("realname")));
+				manager.setEmail(String.valueOf(map.get("email")));
+				manager.setPermission(String.valueOf(map.get("permission")));
+				manager.setPhoto(String.valueOf(map.get("photo")));
+				manager.setBoonday(String.valueOf(map.get("boonday")));
+				manager.setLastlogen(String.valueOf(map.get("lastlogen")));
+				list.add(manager);
+				System.out.println(map.get("manager_id"));
+				System.out.println(map.get("realname"));
+			}
+		}
+		return list;
+	}
+}

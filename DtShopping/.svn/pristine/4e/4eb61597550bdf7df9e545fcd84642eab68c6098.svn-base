@@ -1,0 +1,142 @@
+#bbig{
+	height: 800px;
+	width: 100%;
+	background-color: #F5F5F5;
+	padding-left: 65px;
+	padding-right: 65px;
+}
+#gr-leftlan{
+	float: left;
+	height: 710px;
+	width: 240px;
+	background-color: white;
+	padding: 10px;
+	margin-top: 50px;
+}
+
+#gr-leftmenu{
+	/*background-color: salmon;*/
+	height: 600px;
+	width: 100%;
+	padding-left: 23px;
+}
+#gr-leftmenu table tr td{
+	padding: 10px;
+	font-size: 15px;
+	color: #999999;
+}
+#gr-leftmenu table tr td a:hover{
+	color: orangered;
+}
+#gr-leftmenu table th{
+	padding: 10px;
+	font-size: 17px;
+}
+
+
+
+#gr-rightlan{
+	float: left;
+	height: 710px;
+	width: 963px;
+	background-color: white;
+	margin-top: 50px;
+	padding: 50px;
+}
+#gr-touxianglan{
+	height: 190px;
+	width: 100%;
+	padding-left: 35px;
+	/*background-color: orchid;*/
+	border-bottom:1px solid darkgray;
+}
+#touxiang{
+	float: left;
+	height: 185px;
+	width: 25%;
+	/*background-color: #4CAE4C;*/
+}
+#gr-namelan{
+	/*background-color: #D9534F;*/
+	height: 185px;
+	width: 75%;
+	padding-top: 33px;
+}
+#gr-ziliaolan{
+	height: 420px;
+	width: 100%;
+	/*background-color: #66AFE9;*/
+}
+#gr-ziliaolan ul li{
+	height: 210px;
+	width: 50%;
+	float: left;
+	/*border: 1px solid saddlebrown;*/
+}
+.dindantou{
+	float: left;
+	height:210px ;
+	width: 36%;
+	/*background-color: #337AB7;*/
+	padding-top: 70px;
+}
+.dindan-zi{
+	float: left;
+	height:210px ;
+	width: 64%;
+	/*background-color:palegoldenrod;*/
+	padding-top: 70px;
+}
+.dindan-zi a{
+	text-decoration: none;
+}
+
+#gr-message{
+	height: 420px;
+	width: 100%;
+	/*background-color: #66AFE9;*/
+	padding: 50px;
+	
+}
+#gr-message ul li{
+	float: left;
+	height: 80px;
+	width: 50%;
+	/*border: 1px solid brown;*/
+	padding-top: 45px;
+	font-size: 18px;
+	color: grey;
+}
+
+#gr-message ul li a{
+	text-decoration: none;
+}
+.hjsh {
+				margin-top: 0px;
+				margin-left: 0px;
+				width: 100%;
+				height: 50px;
+				padding: 20px;
+			}
+			
+			.hjsh a {
+				color: black;
+			}
+			
+			.hjsh a:hover {
+				color: orange;
+			}
+			
+			.tiao {
+				margin-top: 20px;
+				margin-left: 30px;
+				width: 910px;
+				height: 40px;
+				background-color: #F5F5F5;
+			}
+			.tiaoca img{
+				width: 70px;
+				margin-top: 25px;
+				margin-left: 80px;
+				border: 1px solid #A9A9A9;
+			}

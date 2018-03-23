@@ -1,0 +1,127 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="/DtShopping/static/css/font/mycss2.css" />
+		<link rel="stylesheet" href="/DtShopping/static/css/font/bootstrap1.css" />
+		<script type="text/javascript" src="/DtShopping/static/js/font/jquery-3.2.1.min.js" ></script>
+		<script type="text/javascript" src="/DtShopping/static/js/font/bootstrap.min.js" ></script>
+		<script type="text/javascript" src="/DtShopping/static/js/font/main.js" ></script>	
+	</head>
+
+
+	<body>
+		<%@ include file="Header.jsp" %>
+			<div class="big-box">
+				<div class="box-box">
+					<div class="title">
+						<h2>购物清单</h2>
+					</div>
+					<div class="one" hidden="hidden">
+						<div class="care1">
+						</div>
+						<center>
+							<h3>您的购物车还没有商品</h3>
+							<a class="lili" href="main.html">快去选购</a>
+						</center>
+					</div>
+					<div class="two">
+						<span class="name">商品信息</span>
+						<span class="operation">操作</span>
+						<span class="subtotal">小计</span>
+						<span class="num">数量</span>
+						<span class="price">单价</span>
+					</div>
+					<div class="two-content">
+						<div class="pho-car">
+							<img src="img/7.jpg" />
+						</div>
+						<div class="pho-car1">
+							<span class="pin-pai">Iphone7</span>
+						</div>
+						<div class="danjia"><span class="mon-ey">￥5580</span></div>
+						<div class="sum-shu">
+							<img id="jian" class="asas" src="/DtShopping/static/img/car/jian.png" />
+							<input type="text" ng-model="value" class="susu" id="shuzi">
+							<img id="jia" class="asas1" src="/DtShopping/static/img/car/jia.png" />
+						</div>
+						<div class="sum-mon"><span class="sum">￥<label class="mon"></label></span>
+							<img id="shan" class="asas2" src="/DtShopping/static/img/car/shan.png" />
+						</div>
+					</div>
+
+					<div class="threr">
+						<div class="sjiji">
+							<h4 class="hhh4">共计金额：
+								<span class="sum">￥<label class="mon"></label></span>
+							</h4>
+							
+						</div>
+						<div class="bootom1">
+						<a href="" class="carcar1">结算</a>
+					</div>
+					</div>
+				</div>
+			</div>
+			<%@ include file="Footer.jsp" %>
+	</body>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#xxx1").show();
+			$("#xxx2").hide();
+			$("#xxx3").hide();
+			$("#xxx4").hide();
+			var y=888;
+			var x = 1;
+			$("#shuzi").val(x);
+			$(".mon").text(y);
+			$("#yyy1").mouseover(function() {
+				$("#xxx1").show();
+				$("#xxx2").hide();
+				$("#xxx3").hide();
+				$("#xxx4").hide();
+			});
+			$("#yyy2").mouseover(function() {
+				$("#xxx2").show();
+				$("#xxx1").hide();
+				$("#xxx3").hide();
+				$("#xxx4").hide();
+			});
+			$("#yyy3").mouseover(function() {
+				$("#xxx3").show();
+				$("#xxx2").hide();
+				$("#xxx1").hide();
+				$("#xxx4").hide();
+			});
+			$("#yyy4").mouseover(function() {
+				$("#xxx4").show();
+				$("#xxx2").hide();
+				$("#xxx3").hide();
+				$("#xxx1").hide();
+			});
+			$("#jia").mousedown(function() {
+				x++;
+				y=y*x;
+				$("#shuzi").val(x);
+				$(".mon").text(y);
+				y=888;
+			})
+			$("#jian").mousedown(function() {
+				x--;
+				if(x == 0) {
+					x = 1;
+				}
+				y=y*x;
+				$("#shuzi").val(x);
+				$(".mon").text(y);
+				y=888;
+			})
+			$(".mon").val(888*$("#shuzi").val())
+		});
+	</script>
+
+</html>

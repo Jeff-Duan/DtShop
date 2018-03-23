@@ -1,0 +1,21 @@
+package service;
+
+import dao.GoodDaoImpl;
+import model.Good;
+
+public class UpdataGoodService {
+	//�޸���Ʒ��Ϣ
+	public int updataGood(Good good){
+		int i=0;
+		GoodDaoImpl goodDaoImpl=new GoodDaoImpl();
+		i=goodDaoImpl.updataGood(good);
+		return i;
+	}
+	//删除商品
+	public int deleteGood(String goodsid){
+		int i=0;
+		GoodDaoImpl goodDaoImpl=new GoodDaoImpl();
+		goodDaoImpl.deleteGood(goodsid);
+		return i;
+	}
+}

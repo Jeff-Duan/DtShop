@@ -1,0 +1,43 @@
+package dao;
+
+import java.util.List;
+
+import utils.odbcUtils;
+
+/*
+ * author:xpl
+ * time:10/08/30
+ * */
+public class orderQueryImpl {
+	
+	public int nopay(int userid) {
+		int num=0;
+		String sql="select * from dt_goods_order where user_id=? and state=0 ";
+		List list =odbcUtils.executeQuery(sql,new Object[]{userid});
+		if (list!=null) {
+			num=list.size();
+		}
+		return num;
+	}
+	
+	public int nosend(int userid) {
+		int num=0;
+		String sql="select * from dt_goods_order where user_id=? and orderstate=0";
+		List list =odbcUtils.executeQuery(sql,new Object[]{userid});
+		if (list!=null) {
+			num=list.size();
+		}
+		return num;
+	}
+	
+	
+	public int waitget(int userid) {
+		int num=0;
+		String sql="select * from dt_goods_order where user_id=? and orderstate=1";
+		List list =odbcUtils.executeQuery(sql,new Object[]{userid});
+		if (list!=null) {
+			num=list.size();
+		}
+		return num;
+	}
+}

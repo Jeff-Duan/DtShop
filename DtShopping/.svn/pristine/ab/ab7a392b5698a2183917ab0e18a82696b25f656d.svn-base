@@ -1,0 +1,264 @@
+<%@page import="model.CarCar"%>
+<%@page import="model.ShowList"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title></title>
+
+<link rel="stylesheet" href="/DtShopping/static/css/font/mycss4.css" />
+<link rel="stylesheet" href="/DtShopping/static/css/font/bootstrap1.css" />
+<script type="text/javascript"
+	src="/DtShopping/static/js/font/jquery-3.2.1.min.js"></script>
+<script type="text/javascript"
+	src="/DtShopping/static/js/font/bootstrap.min.js"></script>
+<script type="text/javascript" src="/DtShopping/static/js/font/main.js"></script>
+
+
+</head>
+
+
+<body>
+	<%
+		CarCar car[] = (CarCar[]) request.getAttribute("car");
+	%>
+	<%@ include file="Header.jsp"%>
+
+	<div class="asdasa">
+		<div class="adress">
+					<div class="tttile">
+						<h2>收货地址</h2>
+					</div>
+					<div class="kong">
+						<ul class="didizhi">
+							<li class="cccahng1" style="background-color: white;" hidden="hidden">
+								<p><label class="aaaa"></label></p>
+								<p><label class="bbbb"></label></p>
+								<p><label class="cccc"></label><label class="eeee"></label><label class="ffff"></label></p>
+								<p><label class="dddd"></label></p>
+								<div class="change">
+									<div class="change1">修改</div>
+									<div class="change2">删除</div>
+								</div>
+							</li>
+							<li class="cccahng">
+								<p>使用新地址</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+				</div>
+		<div class="big-box">
+			<div class="box-box">
+				<div class="title">
+					<h2>购物清单</h2>
+				</div>
+				<div class="two">
+					<span class="name">商品信息</span> <span class="operation"></span> <span
+						class="subtotal">小计</span> <span class="num">数量</span> <span
+						class="price">单价</span>
+				</div>
+				<%-- <c:forEach items="${car}" var="cars"> --%>
+				<%
+					for (int i = 0; i < car.length; i++) {
+						CarCar cc = car[i];
+				%>
+				<div class="two-content" value="<%=cc.getUserid()%>">
+					<div class="pho-car">
+						<img src="/DtShopping/static/img/mainimg/<%=cc.getGoodimg()%>" />
+					</div>
+					<div class="pho-car1">
+						<span class="pin-pai"><%=cc.getGoodname()%></span>
+					</div>
+					<div class="danjia">
+						<span class="mon-ey">￥<%=cc.getGoodprice()%></span>
+					</div>
+					<div class="sum-shu">
+
+						<label class="mon1"><%=cc.getCount()%></label>
+
+					</div>
+					<div class="sum-mon">
+						<span class="sum">￥<%=cc.getCarmoney()%><label class="mon"></label></span>
+						
+					</div>
+				</div>
+				<%
+					};
+				%>
+				<%-- 	</c:forEach> --%>
+				<div class="threr">
+					<div class="sjiji">
+						<h4 class="hhh4">
+							共计金额： <strong>￥${mon}</strong>
+						</h4>
+					</div>
+					<div class="bootom1">
+
+						<a class="carcar1">提交订单</a>
+
+						<a  class="carcar1">提交订单</a>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="box-box1" id="box-box1" hidden="hidden">
+					<div class="title">
+						<h2>添加地址</h2>
+					</div>
+					<div class="two-content1">
+						<input class="heel" type="text" placeholder="输入姓名" />
+						<input class="heel1" type="text" placeholder="手机号" />
+						<select class="shengh" id="shengh">
+							<option>请选择</option>
+						</select>
+						<select class="shia" id="shia">
+							<option>请选择</option>
+						</select>
+						<select class="xiana" id="xiana">
+							<option>请选择</option>
+						</select>
+						<input class="heel2" type="text" placeholder="详细地址" />
+						<div class="aadress">
+							<a>保存</a>
+						</div>
+						
+					</div>
+				</div>
+
+		<%@ include file="Footer.jsp"%>
+</body>
+<script type="text/javascript">
+		$(document).ready(function() {
+			$(".cccahng").on("click", function() {
+				$("#box-box1").show();
+			});
+			
+			$(".aadress").on("click",function(){
+				$(".cccahng1").show();
+				$("#box-box1").hide();
+				$(".cccahng").hide();
+				$(".aaaa").text($(".heel").val());	
+				$(".bbbb").text($(".heel1").val());	
+				$(".cccc").text($(".shengh").select().val());
+				$(".eeee").text($(".shia").select().val());
+				$(".ffff").text($(".xiana").select().val());
+				$(".dddd").text($(".heel2").val());
+				$(".change").hide();
+			});
+			$(".cccahng1").on("mouseenter",function(){
+				 $(".change").slideToggle("slow");
+			});
+			$(".cccahng1").on("mouseleave",function(){
+				  $(".change").slideToggle("slow");
+			});
+			$(".change1").on("mouseenter",function(){
+				 $(".change1").css("background-color","#F2F2F2");
+			});
+			$(".change1").on("mouseleave",function(){
+				 $(".change1").css("background-color","white");
+			});
+			$(".change2").on("mouseenter",function(){
+				 $(".change2").css("background-color","#F2F2F2");
+			});
+			$(".change1").on("mouseleave",function(){
+				 $(".change2").css("background-color","white");
+			});
+			$(".change1").on("click",function(){
+				 $("#box-box1").show();
+			});
+			$(".change2").on("click",function(){
+					$(".cccahng").show();
+				$(".cccahng1").hide();
+				$(".aaaa").text("");	
+				$(".bbbb").text("");	
+				$(".cccc").text("");
+				$(".eeee").text("");
+				$(".ffff").text("");
+				$(".dddd").text("");
+				$(".heel").val("");
+				$(".heel1").val("");	
+				$(".shengh").select().val("请选择");
+				$(".shia").select().val("请选择");
+				$(".xiana").select().val("请选择");
+				$(".heel2").val("");
+			
+			});
+		});
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$.ajax({
+				url: "/DtShopping/static/json/a.json",
+				data: {},
+				dataType: "text",
+				type: "get",
+				async: true,
+				success: function(data) {
+					var obj = $.parseJSON(data);
+					$(obj.p).each(function(i) {
+						$("#shengh").append("<option value=\"" + obj.p[i] + "\">" + obj.p[i] + "</ooption>");
+					});
+					var x;
+					$("#shengh").change(function() {
+
+						x = $(this).val();
+						$("#shia option:gt(0)").remove();
+						$(obj["c"][x]).each(function(i) {
+							$("#shia").append("<option select=selected value=\"" + obj["c"][x][i] + "\">" + obj["c"][x][i] + "</ooption>");
+						});
+
+					});
+					$("#shia").change(function() {
+						$("#xiana option:gt(0)").remove();
+						var y = $(this).val();
+						z = x + "-" + y;
+						$(obj["a"][z]).each(function(i) {
+							$("#xiana").append("<option select=selected value=\"" + obj["a"][z][i] + "\">" + obj["a"][z][i] + "</ooption>");
+						});
+
+					});
+				},
+				error: function() {
+					alert("error");
+				}
+
+			});
+
+		});
+	</script>
+	<script type="text/javascript">
+	$(".bootom1").mousedown(function(){
+		
+		$.ajax({
+			url : "/DtShopping/SumbitOrderServlet",
+			type : "post",
+			dataType : "text",
+			async : false,
+			data : {
+				name:$(".aaaa").text(),
+				pho:$(".bbbb").text(),
+				sheng:$(".cccc").text(),
+				shi:$(".eeee").text(),
+				xian:$(".ffff").text(),
+				xiang:$(".dddd").text()	
+			},
+			success : function(result) {
+				window.location.href='/DtShopping/BackSumMon';
+			},
+			error : function(data) {
+				alert("连接失败");
+			}
+		});
+	});
+</script>
+	
+	
+
+</html>

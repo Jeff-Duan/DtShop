@@ -1,0 +1,152 @@
+<%@page import="model.Pinglun"%>
+<%@page import="model.PhoPhoto"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link rel="stylesheet" href="/DtShopping/static/css/font/mycss1.css" />
+<link rel="stylesheet" href="/DtShopping/static/css/font/bootstrap1.css" />
+<script type="text/javascript"
+	src="/DtShopping/static/js/font/jquery-3.2.1.min.js"></script>
+<script type="text/javascript"
+	src="/DtShopping/static/js/font/bootstrap.min.js"></script>
+<script type="text/javascript" src="/DtShopping/static/js/font/main.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/font/layer/layer.js"></script>
+</head>
+
+<body>
+	<%
+		PhoPhoto photo = (PhoPhoto) request.getAttribute("pho");
+	%>
+	<%@ include file="Header.jsp"%>
+	<div style="height:680px;width:100%;background-color:white;">
+	<div class="center-body">
+		<div class="icon-biao">
+			<ul>
+				<li><img id="yyy1"
+					src="/DtShopping/static/img/mainimg/<%=photo.getGoodsimg1()%>" /></li>
+				<li><img id="yyy2"
+					src="/DtShopping/static/img/mainimg/<%=photo.getGoodsimg2()%>" /></li>
+				<li><img id="yyy3"
+					src="/DtShopping/static/img/mainimg/<%=photo.getGoodsimg3()%>" /></li>
+				<li><img id="yyy4"
+					src="/DtShopping/static/img/mainimg/<%=photo.getGoodsimg4()%>" /></li>
+			</ul>
+		</div>
+		<div class="cen-big">
+			<img id="xxx1"
+				src="/DtShopping/static/img/mainimg/<%=photo.getGoodsimg1()%>" /> <img
+				id="xxx2"
+				src="/DtShopping/static/img/mainimg/<%=photo.getGoodsimg2()%>" /> <img
+				id="xxx3"
+				src="/DtShopping/static/img/mainimg/<%=photo.getGoodsimg3()%>" /> <img
+				id="xxx4"
+				src="/DtShopping/static/img/mainimg/<%=photo.getGoodsimg4()%>" />
+		</div>
+		<form id="ffom">
+			<div class="aside">
+				<div>
+					<span class="sum">￥<label class="mon"><%=photo.getGoodprice()%></label></span>
+				</div>
+				<h1 class="ng-binding"><%=photo.getGoodsname()%></h1>
+				<h2 class="xiaoti"><%=photo.getGoodinfo()%></h2>
+				<p class="pei-xuan">配置选择</p>
+				<li>
+					<h1 class="item-name">前置 1600 万像素 + 骁通™ 835</h1>
+				</li>
+				<p class="pei-xuan1">套餐选择</p>
+				<li>
+					<h1 class="item-name">官方标配</h1>
+				</li>
+				<p class="pei-xuan2">数量</p>
+				<img id="jian" class="asd" src="/DtShopping/static/img/car/jian.png" />
+				<input type="text" ng-model="value" class="suzhi" id="shuzi"
+					name="shuzi"> <img id="jia" class="asd1"
+					src="/DtShopping/static/img/car/jia.png" />
+				<div class="bootom">
+					<input onclick="zou()" type="button" class="carcar" value="加入购物车" />
+				</div>
+			</div>
+			<input value="<%=photo.getGoodid()%>" hidden="hidden" name="id">
+		</form>
+	</div>
+	</div>
+
+	
+	<%@ include file="Footer.jsp"%>
+</body>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#xxx1").show();
+		$("#xxx2").hide();
+		$("#xxx3").hide();
+		$("#xxx4").hide();
+		var y = $(".mon").text();
+		var x = 1;
+		$("#shuzi").val(x);
+		$("#yyy1").mouseover(function() {
+			$("#xxx1").show();
+			$("#xxx2").hide();
+			$("#xxx3").hide();
+			$("#xxx4").hide();
+		});
+		$("#yyy2").mouseover(function() {
+			$("#xxx2").show();
+			$("#xxx1").hide();
+			$("#xxx3").hide();
+			$("#xxx4").hide();
+		});
+		$("#yyy3").mouseover(function() {
+			$("#xxx3").show();
+			$("#xxx2").hide();
+			$("#xxx1").hide();
+			$("#xxx4").hide();
+		});
+		$("#yyy4").mouseover(function() {
+			$("#xxx4").show();
+			$("#xxx2").hide();
+			$("#xxx3").hide();
+			$("#xxx1").hide();
+		});
+		$("#jia").mousedown(function() {
+			x++;
+			y = y * x;
+			$("#shuzi").val(x);
+			$(".mon").text(y);
+			y = y / x;
+		})
+		$("#jian").mousedown(function() {
+			x--;
+			if (x == 0) {
+				x = 1;
+			}
+			y = y * x;
+			$("#shuzi").val(x);
+			$(".mon").text(y);
+			y = y / x;
+		})
+	});
+</script>
+<script type="text/javascript">
+	function zou() {
+		$.ajax({
+			url : "/DtShopping/CarListServlet",
+			type : "post",
+			dataType : "text",
+			async : false,
+			data : $("#ffom").serialize(),
+			success : function(result) {
+				var message = $.parseJSON(result);
+				layer.msg(message.msg);
+			},
+			error : function(data) {
+				layer.msg('请登录');
+			}
+		});
+	}
+</script>
+</html>

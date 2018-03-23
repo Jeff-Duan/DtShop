@@ -1,0 +1,36 @@
+package dao;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import utils.odbcUtils;
+import model.PhoPhoto;
+import model.User;
+
+/**
+ * 
+ * @author wf
+ *
+ */
+public class PhoImpl {
+	public PhoPhoto selectPhoto(String id){
+		PhoPhoto phoPhoto = null;
+		String sql ="SELECT a.*,b.* FROM dt_photo a LEFT JOIN dt_goods b ON a.goods_id = b.goods_id WHERE b.goods_id=?";
+		ArrayList<HashMap<String, Object>> list1 = odbcUtils.executeQuery(sql, new Object[]{id});
+		odbcUtils.close();
+		if(list1.size()>0){
+			  phoPhoto = new PhoPhoto();
+			  HashMap map= list1.get(0);
+			  phoPhoto.setGoodsimg1(String.valueOf(map.get("goodsimg1")));
+			  phoPhoto.setGoodsimg2(String.valueOf(map.get("goodsimg2")));
+			  phoPhoto.setGoodsimg3(String.valueOf(map.get("goodsimg3")));
+			  phoPhoto.setGoodsimg4(String.valueOf(map.get("goodsimg4")));
+			  phoPhoto.setGoodsname(String.valueOf(map.get("goodsname")));
+			  phoPhoto.setGoodprice(String.valueOf(map.get("goodsprice")));
+			  phoPhoto.setGoodinfo(String.valueOf(map.get("goodsinfo")));
+			  phoPhoto.setGoodid(String.valueOf(map.get("goods_id")));
+	   		 }
+			return phoPhoto;
+			}
+	}
+

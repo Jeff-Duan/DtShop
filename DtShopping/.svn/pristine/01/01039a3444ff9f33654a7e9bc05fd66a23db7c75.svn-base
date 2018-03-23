@@ -1,0 +1,38 @@
+package afteraction;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import model.Order;
+import model.User;
+import service.QueryUpdateService;
+
+/**
+ * @author dwb
+ */
+@WebServlet("/OrderListConditionServlet")
+public class OrderListConditionServlet extends HttpServlet {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String realname=request.getParameter("realname");
+		String state=request.getParameter("state");
+		String orderstate=request.getParameter("orderstate");
+		System.out.println(realname+state+orderstate);
+		Object []obj={realname,state,orderstate};
+		
+		QueryUpdateService qus=new QueryUpdateService();
+		Order order=qus.QueryOrderCondition(obj);
+		System.out.println(order);
+			try {
+					request.setAttribute("order", order);
+					request.getRequestDispatcher("/AfterJsp/ordercondition.jsp").forward(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+					System.out.println("≤È—Ø ß∞‹");
+				}
+}
+
+}

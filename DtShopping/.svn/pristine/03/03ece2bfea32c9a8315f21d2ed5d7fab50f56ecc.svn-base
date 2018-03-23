@@ -1,0 +1,55 @@
+package afteraction;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
+
+import service.QueryUpdateService;
+
+/**
+ * @author
+ */
+@WebServlet("/CountAllServlet")
+public class CountAllServlet extends HttpServlet {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HashMap map=new HashMap();
+		QueryUpdateService qus=new QueryUpdateService();
+		map=qus.CountOrder();
+		
+		/*Gson gson=new Gson();
+		String json=gson.toJson(map);
+		response.setContentType("text/json");
+		response.setCharacterEncoding("utf-8");
+		response.getWriter().print(json);
+		response.getWriter().close();*/
+		try {
+				request.setAttribute("ycjdd",map.get("ycjdd"));
+				request.setAttribute("dfhdd",map.get("dfhdd"));
+				request.setAttribute("wqrdd",map.get("wqrdd"));
+				request.setAttribute("spzzl",map.get("spzzl"));
+				request.setAttribute("sjl",map.get("sjl"));
+				request.setAttribute("dnl",map.get("dnl"));
+				request.setAttribute("lyql",map.get("lyql"));
+				request.setAttribute("qtl",map.get("qtl"));
+				request.setAttribute("zcyh",map.get("zcyh"));
+				request.setAttribute("xgdyh",map.get("xgdyh"));
+				request.setAttribute("zsyh",map.get("zsyh"));
+				request.setAttribute("wxdyh",map.get("wxdyh"));
+				request.setAttribute("all", map);
+				request.getRequestDispatcher("/AfterJsp/main.jsp").forward(request, response);
+				} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("查询失败");
+				}	
+		
+	}
+
+}

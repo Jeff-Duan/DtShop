@@ -1,0 +1,185 @@
+package dao;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import model.Good;
+import utils.PageModel;
+import utils.odbcUtils;
+
+public class GoodDaoImpl {
+	//查询所有商品，如需修改可根据参数params控制有没有参数传入
+	public PageModel queryGood(Object params[],String page,String rows){
+		List<Good> list=null;
+		ArrayList<HashMap<String, Object>> list1=null;
+		String sql=" select * from dt_goods  ";
+		String sql1=" select * from dt_goods g left join dt_goods_type t on g.goods_typeid=t.goods_typeid where g.goods_typeid=? ";
+		PageModel pageModel1=new PageModel(sql,page,rows);
+		/*PageModel PageModel2=new PageModel(sql1,page,rows);*/
+		System.out.println(params[0]);
+		if(params[0]==null||Integer.parseInt(String.valueOf(params[0]))==0){
+			list1=odbcUtils.executeQuery(pageModel1.toMysqlSql(), null);
+		}else{
+			list1=odbcUtils.executeQuery(sql1, params);
+		}
+		odbcUtils.close();
+		if(list1.size()>0){
+			Good good=null;
+			list=new ArrayList<Good>();
+			for(int i=0;i<list1.size();i++){
+				good=new Good();
+				HashMap map=list1.get(i);
+				good.setGoodsid(String.valueOf(map.get("goods_id")));
+				good.setGoodsname(String.valueOf(map.get("goodsname")));
+				good.setGoodsprice(String.valueOf(map.get("goodsprice")));
+				good.setGoodtypeid(String.valueOf(map.get("goods_typeid")));
+				good.setGoodsinfo(String.valueOf(map.get("goodsinfo")));
+				good.setGoodsmap(String.valueOf(map.get("goodsmap")));
+				good.setGoodsimg(String.valueOf(map.get("goodsimg")));
+				good.setGoodcount(String.valueOf(map.get("goodscount")));
+				good.setGoodssail(String.valueOf(map.get("goodssail")));
+				good.setGoodsdate(String.valueOf(map.get("goodsdate")));
+				good.setGoodstypename(String.valueOf(map.get("goodstypename")));
+				list.add(good);
+				
+			}
+			
+		}
+		pageModel1.setList(list);
+		ArrayList<HashMap<String,Object>>  myList=  odbcUtils.executeQuery(pageModel1.toCountSql(), null);
+		if(myList.size()>0){
+			HashMap  map  =myList.get(0);
+			Integer  count =Integer.valueOf(String.valueOf(map.get("count")));
+			//把条数放到模型中1
+			pageModel1.setTotal(count);
+		}
+		odbcUtils.close();
+		return pageModel1;
+	}
+	
+	//查询需要修改的商品信息
+	
+	public Good queryEchoGood(String goodsid){
+		ArrayList<HashMap<String, Object>> list=null;
+		String sql=" select * from dt_goods where goods_id=? ";
+		Object []params={goodsid};
+		list=odbcUtils.executeQuery(sql, params);
+		Good good=null;
+		if(list.size()>0){
+				good=new Good();
+				HashMap map=list.get(0);
+				good.setGoodsid(String.valueOf(map.get("goods_id")));
+				good.setGoodsname(String.valueOf(map.get("goodsname")));
+				good.setGoodsprice(String.valueOf(map.get("goodsprice")));
+				good.setGoodtypeid(String.valueOf(map.get("goods_typeid")));
+				good.setGoodsinfo(String.valueOf(map.get("goodsinfo")));
+				good.setGoodsmap(String.valueOf(map.get("goodsmap")));
+				good.setGoodsimg(String.valueOf(map.get("goodsimg")));
+				good.setGoodcount(String.valueOf(map.get("goodscount")));
+				good.setGoodssail(String.valueOf(map.get("goodssail")));
+				good.setGoodsdate(String.valueOf(map.get("goodsdate")));
+			/*	good.setGoodstypename(String.valueOf(map.get("goodstypename")));*/
+		}
+		return good;
+	}
+	
+	//添加商品
+	public int addGood(Good good){
+		int i=0;
+		String sql=" insert into dt_goods (goodsname,goodsprice,goods_typeid,goodsinfo,goodsmap,goodsimg,goodscount,goodssail,goodsdate) values(?,?,?,?,?,?,?,?,?) ";
+		Object [] params={good.getGoodsname(),good.getGoodsprice(),good.getGoodtypeid(),good.getGoodsinfo(),good.getGoodsmap(),good.getGoodsimg(),good.getGoodcount(),good.getGoodssail(),good.getGoodsdate()};
+		i=odbcUtils.executeUpdate(sql, params);
+		odbcUtils.close();
+		return i;
+	}
+	
+	//更新商品
+	public int updataGood(Good good){
+		int i=0;
+		String sql=" update  dt_goods set goodsname=?,goodsprice=?,goods_typeid=?,goodsinfo=?,goodsmap=?,goodsimg=?,goodscount=?,goodssail=?,goodsdate=?  where goods_id=? ";
+		System.out.println("dao"+good.getGoodsid());
+		System.out.println("dao"+good.getGoodsmap());
+		Object [] params={good.getGoodsname(),good.getGoodsprice(),good.getGoodtypeid(),good.getGoodsinfo(),good.getGoodsmap(),good.getGoodsimg(),good.getGoodcount(),good.getGoodssail(),good.getGoodsdate(),good.getGoodsid()};
+		i=odbcUtils.executeUpdate(sql, params);
+		odbcUtils.close();
+		return i;
+	}
+	
+	//删除商品
+	public int deleteGood(String goodsid){
+		int i=0;
+		String sql=" delete from dt_goods where goods_id=? ";
+		Object [] params={goodsid};
+		i=odbcUtils.executeUpdate(sql, params);
+		return i;
+	}
+	
+	//查询回收站的商品
+	public List queryRecoverGood(Object params[]){
+		List<Good> list=null;
+		ArrayList<HashMap<String, Object>> list1=null;
+		String sql=" select * from dt_goods2 g left join dt_goods_type t on g.goods_typeid=t.goods_typeid ";
+		String sql1=" select * from dt_goods2 g left join dt_goods_type t on g.goods_typeid=t.goods_typeid where g.goods_typeid=? ";
+		if(params[0]==null||Integer.parseInt(String.valueOf(params[0]))==0){
+			list1=odbcUtils.executeQuery(sql, null);
+		}else{
+			list1=odbcUtils.executeQuery(sql1, params);
+		}
+		odbcUtils.close();
+		if(list1.size()>0){
+			Good good=null;
+			list=new ArrayList<Good>();
+			for(int i=0;i<list1.size();i++){
+				good=new Good();
+				HashMap map=list1.get(i);
+				good.setGoodsid(String.valueOf(map.get("goods_id")));
+				good.setGoodsname(String.valueOf(map.get("goodsname")));
+				good.setGoodsprice(String.valueOf(map.get("goodsprice")));
+				good.setGoodtypeid(String.valueOf(map.get("goods_typeid")));
+				good.setGoodsinfo(String.valueOf(map.get("goodsinfo")));
+				good.setGoodsmap(String.valueOf(map.get("goodsmap")));
+				good.setGoodsimg(String.valueOf(map.get("goodsimg")));
+				good.setGoodcount(String.valueOf(map.get("goodscount")));
+				good.setGoodssail(String.valueOf(map.get("goodssail")));
+				good.setGoodsdate(String.valueOf(map.get("goodsdate")));
+				good.setGoodsdeldate(String.valueOf(map.get("goodsdeldate")));
+				good.setGoodstypename(String.valueOf(map.get("goodstypename")));
+				list.add(good);
+				
+			}
+			
+		}
+		return list;
+	}
+	
+	//恢复商品
+	public int recoverGood(String goodsid){
+		int i=0;
+		String sql=" delete from dt_goods2 where goods_id=? ";
+		Object [] params={goodsid};
+		i=odbcUtils.executeUpdate(sql, params);
+		return i;
+	}
+	
+	//查询商品类型
+	public List queryGoodType(){
+		List<Good> list=null;
+		ArrayList<HashMap<String, Object>> list1=null;
+		String sql=" select * from dt_goods_type ";
+		list1=odbcUtils.executeQuery(sql, null);
+		if(list1.size()>0){
+			Good good=null;
+			list=new ArrayList<Good>();
+			for(int i=0;i<list1.size();i++){
+				good=new Good();
+				HashMap map=list1.get(i);
+				good.setGoodtypeid(String.valueOf(map.get("goods_typeid")));
+				good.setGoodstypename(String.valueOf(map.get("goodstypename")));
+				list.add(good);
+			}
+		}
+		return list;
+ 	}
+	
+}

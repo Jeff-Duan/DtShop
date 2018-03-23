@@ -1,0 +1,133 @@
+		* {		margin: 0px;
+				padding: 0px;
+			}
+			
+			.bod {
+				width: 100%;
+				min-height: 100%;
+				height: auto;
+				display: -webkit-box;
+			}
+			
+			.center {
+				width: 854px;
+				height: 580px;
+				margin: 25px auto;
+				padding-bottom: 10px;
+				background-color: white;
+			}
+			
+			body {
+				background: #f9f9f9;
+				color: #666;
+			}
+			
+			.top-header {
+				position: absolute;
+				top: 120px;
+				left: 620px;
+				margin: 0 auto;
+			}
+			
+			.top-header .titlea {
+				font-size: 30px;
+				font-weight: normal;
+				color: #333;
+				line-height: 1.5;
+			}
+			
+			.pho-stp {
+				position: absolute;
+				top: 210px;
+				left: 520px;
+				width: 332px;
+				height: 500px;
+			}
+			
+			.pho-email {
+				padding-bottom: 5px;
+				color: #333;
+				font-weight: normal;
+			}
+			
+			.email-login {
+				width: 310px;
+				height: 20px;
+				line-height: 20px;
+				padding: 10px;
+				display: inline-block;
+				margin-top: 20px;
+			}
+			
+			.pho-email1 {
+				padding-bottom: 5px;
+				color: #333;
+				font-weight: normal;
+				margin-top: 25px;
+			}
+			
+			.pho-yan {
+				width: 180px;
+				height: 20px;
+				line-height: 20px;
+				padding: 10px;
+				display: inline-block;
+				margin-top: 20px;
+			}
+			
+			.pho-button {
+				position: absolute;
+				top: 460px;
+				left: 520px;
+				-webkit-appearance: none;
+				background-color: #ff6700;
+				margin-top: 30px;
+				border: 1px solid rgba(186, 186, 186, 0.3);
+				color: #fff;
+				width: 330px;
+				height: 42px;
+				margin: 0 auto;
+				line-height: 42px;
+				text-align: center;
+				font-size: 14px;
+				display: block;
+				cursor: pointer;
+				border: 1px solid #e8e8e8;
+				overflow: hidden;
+			}
+			
+			.regis-as {
+				position: absolute;
+				top: 520px;
+				left: 520px;
+				color: #9d9d9d;
+			}
+			.regis-as1{
+				position: absolute;
+				top: 540px;
+				left: 520px;
+				color: #9d9d9d;
+			}
+			.bootom-header{
+				height: 40px;
+				margin-top: 10px;
+				
+				text-align: center;
+			}
+			.font-font{
+				font-size: 12px;
+			}
+			.center img{
+				position: absolute;
+				top: 35px;
+				left: 648px;
+				height: 60px;
+			}
+			.span img{
+			position: absolute;
+				top: 159px;
+				left: 225px;
+				width: 85px;
+				height:40px;
+				border: 1px solid #ebebeb;
+			}

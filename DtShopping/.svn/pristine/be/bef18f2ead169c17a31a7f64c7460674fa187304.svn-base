@@ -1,0 +1,49 @@
+package service;
+
+import java.util.List;
+
+import dao.AfterUserOrderDaoImpl;
+
+import dao.UserDaoImpl;
+import model.Manager;
+import model.Order;
+import model.User;
+
+public class QueryUpdateService {
+	public List QueryUser(){
+		List list = null;
+		AfterUserOrderDaoImpl userDaoImpl = new AfterUserOrderDaoImpl();
+		list = userDaoImpl.QueryUser();
+		return list;
+	}
+	public User QueryUserBack(String id){
+		User user = null;
+		AfterUserOrderDaoImpl userDaoImpl = new AfterUserOrderDaoImpl();
+		user = userDaoImpl.QueryUserBack(id);
+		return user;
+	}
+	public List QueryOrder(){
+		List list = null;
+		AfterUserOrderDaoImpl odi = new AfterUserOrderDaoImpl();
+		list = odi.QueryOrderlist();
+		return list;
+	}
+	public int updateuserstate(Object []obj){
+		AfterUserOrderDaoImpl udus=new AfterUserOrderDaoImpl();
+    	int i=udus.updateuserstate(obj);
+    	return i;
+    }
+	public Order QueryOrderCondition(Object []obj){
+		Order order = null;
+		AfterUserOrderDaoImpl userDaoImpl = new AfterUserOrderDaoImpl();
+		order = userDaoImpl.QueryOrderCondition(obj);
+		return order;
+	}
+	public Manager QueryManager(Object[]obj){
+		Manager manager = null;
+		AfterUserOrderDaoImpl userDaoImpl = new AfterUserOrderDaoImpl();
+		manager = userDaoImpl.QueryManager(obj);
+		return manager;
+	}
+	
+}

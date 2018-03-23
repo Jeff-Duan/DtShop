@@ -1,0 +1,26 @@
+package service;
+
+import java.util.List;
+
+import dao.ManagerDaoImpl;
+import model.Manager;
+
+public class QueryManagerService {
+	//查询管理员
+	public List queryManagerService(String manangeid,String permission){
+		List list=null;
+		ManagerDaoImpl managerDaoImpl=new ManagerDaoImpl();	
+		list=managerDaoImpl.queryManager(manangeid,permission);
+		return list;
+	}
+	
+	//查询管理员，用于回显数据
+	public Manager queryManagerInfoService(String managerid){
+		Manager manager=null;
+		ManagerDaoImpl managerDaoImpl=new ManagerDaoImpl();	
+		manager=managerDaoImpl.queryManagerInfo(managerid);
+		return manager;
+	}
+
+	
+}

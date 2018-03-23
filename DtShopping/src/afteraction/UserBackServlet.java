@@ -1,0 +1,33 @@
+package afteraction;
+
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import model.User;
+import service.QueryUpdateService;
+
+/**
+ * Servlet implementation class UserBackServlet
+ */
+@WebServlet("/UserBackServlet")
+public class UserBackServlet extends HttpServlet {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String id=request.getParameter("id");
+		QueryUpdateService qus=new QueryUpdateService();
+		User user=qus.QueryUserBack(id);
+		try {
+			request.setAttribute("user", user);
+			request.getRequestDispatcher("/AfterJsp/edit_user.jsp").forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("查询成功");
+		}
+		}
+
+}

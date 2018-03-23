@@ -1,0 +1,17 @@
+package service;
+
+import dao.PhoImpl;
+import model.PhoPhoto;
+
+/**
+ * 
+ * @author wf
+ *
+ */
+public class PhoService {
+	public PhoPhoto getPhoPhoto(String id) {
+		PhoImpl phoImpl = new PhoImpl();
+		PhoPhoto phoPhoto = phoImpl.selectPhoto(id);
+		return phoPhoto;
+	}
+}

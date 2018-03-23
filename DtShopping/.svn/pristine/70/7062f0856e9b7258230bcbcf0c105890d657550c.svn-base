@@ -1,0 +1,75 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!--底部-->
+		<div id="footer">
+			<div id="footer-kuang">
+				<div id="biao">
+					<ul id="biao-ul">
+						<li>预约维修服务</li>
+						<li class="left-shu">七天无理由退货</li>
+						<li class="left-shu">十五天免费换货</li>
+						<li class="left-shu">全场包邮</li>
+						<li class="left-shu">520余家售后网点</li>
+					</ul>
+				</div>
+				<div id="shubiao">
+					<div id="shubiao-zi">
+						<ul id="shubiao-ul">
+							<li>帮助中心
+								<ol>账户管理</ol>
+								<ol>购物指南</ol>
+								<ol>订单操作</ol>
+							</li>
+							<li>服务支持
+								<ol>售后政策</ol>
+								<ol>自助服务</ol>
+								<ol>相关下载</ol>
+							</li>
+							<li>线下门店
+								<ol>DT星球</ol>
+								<ol>服务网点</ol>
+								<ol>零售网点</ol>
+							</li>
+							<li>关于DT
+								<ol>了解DT</ol>
+								<ol>加入DT</ol>
+								<ol>联系我们</ol>
+							</li>
+							<li>关注我们
+								<ol>新浪微博</ol>
+								<ol>DT部落</ol>
+								<ol>官方微信</ol>
+							</li>
+							<li>特色服务
+								<ol>F码通道</ol>
+								<ol>礼物码</ol>
+								<ol>防伪查询</ol>
+							</li>
+						</ul>
+					</div>
+					<div id="shubiao-kefu">
+						<p id="kefuphone">520-520-0768</p>
+						<p>周一至周日8:00-18:00<br/>（仅收市话费）</p>
+						<a class="kefu" href="index.html">二十四小时在线客服</a>
+					</div>
+				</div>
+			</div>
+			<div id="footer-zuimo">
+				<img id="footer-img" src="/DtShopping/static/img/mainimg/yuanTu.png" height="45px" />
+				<p id="footer-wen">
+					@DT.com&nbsp;京ICP证520520号&nbsp;京ICP备10010111号&nbsp;京公网安备5210004357666号&nbsp;京网文[2017]0075-0077号
+					<br />违法和不良信息举报电话:185-0130-1238,本网站所列数据，除特殊说明，所有数据均出自我司实验室测试
+				</p>
+				
+				
+			</div>
+		</div>
+</body>
+</html>

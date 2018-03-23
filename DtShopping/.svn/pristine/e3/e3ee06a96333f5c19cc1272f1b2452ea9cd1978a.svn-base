@@ -1,0 +1,28 @@
+package fontAction;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import model.User;
+import service.PhoService;
+
+@WebServlet("/BackSumMon")
+public class BackSumMon extends HttpServlet{
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		PhoService phoService = new PhoService();
+		HttpSession session = request.getSession(false);
+		User user=(User)session.getAttribute("user");
+		PhoService p = new PhoService();
+		String summon=p.getsummon(user.getUser_id());
+		request.setAttribute("mon", summon);
+		request.getRequestDispatcher("FontJsp/paypay.jsp").forward(request, response);
+	}
+}

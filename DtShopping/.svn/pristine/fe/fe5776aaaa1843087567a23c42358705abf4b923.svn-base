@@ -1,0 +1,21 @@
+package service;
+
+import dao.ManagerDaoImpl;
+import model.Manager;
+
+public class UpdataManagerService {
+	//更新管理员
+	public int updataManager(Manager manager){
+		int i=0;
+		ManagerDaoImpl managerDaoImpl=new ManagerDaoImpl();
+		i=managerDaoImpl.updataManager(manager);
+		return i;
+	}
+	//添加管理员
+	public int addManager(Manager manager){
+		int i =0;
+		ManagerDaoImpl managerDaoImpl=new ManagerDaoImpl();
+		i=managerDaoImpl.addManager(manager);
+		return i;
+	}
+}

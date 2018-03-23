@@ -1,0 +1,166 @@
+package dao;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import model.Manager;
+import model.Order;
+import model.User;
+import utils.odbcUtils;
+
+public class AfterUserOrderDaoImpl {
+     public List QueryOrderlist(){
+    	 List<Order> list=null;
+    	 String sql="SELECT o.order_id,u.realname,g.goodsname,o.carcount,o.orderprice,o.state,o.orderstate FROM dt_goods_order AS o, dt_goods AS g, dt_user AS u WHERE o.user_id = u.user_id AND o.goods_id = g.goods_id ";
+    	 ArrayList<HashMap<String, Object>> list1 = odbcUtils.executeQuery(sql, null);
+    	 if(list1.size()>0){ 
+    	     Order order=null;
+    	     list=new ArrayList<Order>();
+  	  	  for(int i=0;i<list1.size();i++){
+  	  		order=new Order();
+  	  	  HashMap map= list1.get(i);
+  		  order.setOrder_id(String.valueOf(map.get("order_id")));
+  		  order.setReman(String.valueOf(map.get("realname")));
+  		  order.setCommname(String.valueOf(map.get("goodsname")));
+  		  order.setCount(String.valueOf(map.get("carcount")));
+  		  order.setOrdermoney(String.valueOf(map.get("orderprice")));
+  		  order.setPaystatus(String.valueOf(map.get("state")));
+  		  order.setOrderstatus(String.valueOf(map.get("orderstate")));
+  		  list.add(order);
+    	
+     }
+    	 }
+  	  	 return list; 
+}
+     
+     public int updateuserstate(Object []obj){
+         String sql="UPDATE dt_user set state =? WHERE user_id=?";
+         int i=odbcUtils.executeUpdate(sql, obj);
+         odbcUtils.close();
+         return i;
+    	}
+     
+     public List QueryUser(){
+ 		List<User> list=null;
+ 		String sql = "select * from dt_user ";
+ 		ArrayList<HashMap<String, Object>> list1 = odbcUtils.executeQuery(sql, null);
+ 		odbcUtils.close();
+ 		if(list1.size()>0){
+ 		  User user=null;
+ 		  list=new ArrayList<User>();
+    	  	 for(int i=0;i<list1.size();i++){
+    	  	  user=new User();
+    	  	  HashMap map= list1.get(i);
+    		  user.setUser_id(String.valueOf(map.get("user_id")));
+    		  user.setUsername(String.valueOf(map.get("username")));
+    		  user.setPassword(String.valueOf(map.get("password")));
+    		  user.setRealname(String.valueOf(map.get("realname")));
+    		  user.setSex(String.valueOf(map.get("sex")));
+    		  user.setBirthday(String.valueOf(map.get("birthday")));
+    		  user.setEmail(String.valueOf(map.get("email")));
+    		  user.setTelphone(String.valueOf(map.get("telphone")));
+    		  user.setPicture(String.valueOf(map.get("picture")));
+    		  user.setState(String.valueOf(map.get("state")));
+    		  list.add(user);
+    	   }
+   }
+ 		return list;
+ 		}
+ 	public User QueryUserBack(String id){
+ 		
+ 		String sql = "select * from dt_user where user_id=? ";
+ 		ArrayList<HashMap<String, Object>> list1 = odbcUtils.executeQuery(sql,new String[]{id});
+ 		odbcUtils.close();
+ 		User user=null;
+ 		if(list1.size()>0){
+ 			 HashMap map= list1.get(0);
+ 			  user=new User();
+    	  	  user.setUser_id(String.valueOf(map.get("user_id")));
+    		  user.setUsername(String.valueOf(map.get("username")));
+    		  user.setPassword(String.valueOf(map.get("password")));
+    		  user.setRealname(String.valueOf(map.get("realname")));
+    		  user.setSex(String.valueOf(map.get("sex")));
+    		  user.setBirthday(String.valueOf(map.get("birthday")));
+    		  user.setEmail(String.valueOf(map.get("email")));
+    		  user.setTelphone(String.valueOf(map.get("telphone")));
+    		  user.setPicture(String.valueOf(map.get("picture")));
+    		  user.setState(String.valueOf(map.get("state")));
+    		  
+    	   
+   }
+ 		return user;
+ 		}
+ 	
+ 	public List QueryUserCondition(String id){
+ 		List<User> list=null;
+ 		String sql = "select * from dt_user where user_id=? ";
+ 		ArrayList<HashMap<String, Object>> list1 = odbcUtils.executeQuery(sql,new String[]{id});
+ 		odbcUtils.close();
+ 		if(list1.size()>0){
+ 		  User user=null;
+ 		  list=new ArrayList<User>();
+    	  	 for(int i=0;i<list1.size();i++){
+    	  	  user=new User();
+    	  	  HashMap map= list1.get(i);
+    		  user.setUser_id(String.valueOf(map.get("user_id")));
+    		  user.setUsername(String.valueOf(map.get("username")));
+    		  user.setPassword(String.valueOf(map.get("password")));
+    		  user.setRealname(String.valueOf(map.get("realname")));
+    		  user.setSex(String.valueOf(map.get("sex")));
+    		  user.setBirthday(String.valueOf(map.get("birthday")));
+    		  user.setEmail(String.valueOf(map.get("email")));
+    		  user.setTelphone(String.valueOf(map.get("telphone")));
+    		  user.setPicture(String.valueOf(map.get("picture")));
+    		  user.setState(String.valueOf(map.get("state")));
+    		  list.add(user);
+    	   }
+   }
+ 		return list;
+ 		}
+ 	public List QueryOrderCondition(Object []obj){
+ 		List<Order> list=null;
+ 		String sql = "SELECT * FROM (SELECT o.order_id,u.realname,g.goodsname,o.carcount,o.orderprice,o.state,o.orderstate FROM dt_goods_order AS o, dt_goods AS g, dt_user AS u WHERE o.user_id = u.user_id AND o.goods_id = g.goods_id) AS p where p.realname=? || p.state=? || p.orderstate=?";
+ 		ArrayList<HashMap<String, Object>> list1 = odbcUtils.executeQuery(sql,obj);
+ 		  if(list1.size()>0){ 
+   	        Order order=null;
+   	      list=new ArrayList<Order>();
+ 	  	  for(int i=0;i<list1.size();i++){
+ 	  		order=new Order();
+ 	  	  HashMap map= list1.get(i);
+ 		  order.setOrder_id(String.valueOf(map.get("order_id")));
+ 		  order.setReman(String.valueOf(map.get("realname")));
+ 		  order.setCommname(String.valueOf(map.get("goodsname")));
+ 		  order.setCount(String.valueOf(map.get("carcount")));
+ 		  order.setOrdermoney(String.valueOf(map.get("orderprice")));
+ 		  order.setPaystatus(String.valueOf(map.get("state")));
+ 		  order.setOrderstatus(String.valueOf(map.get("orderstate")));
+ 		  list.add(order);
+   	
+    }
+   	 }
+ 	  	 return list; 
+
+ 	}
+ 	
+ 	public Manager QueryManager(Object[]obj){
+ 		
+ 		String sql = "select * from dt_manager where username=? and password=? ";
+ 		ArrayList<HashMap<String, Object>> list1 = odbcUtils.executeQuery(sql, obj);
+ 		odbcUtils.close();
+ 		Manager manager=null;
+ 		if(list1.size()>0){
+ 			HashMap map= list1.get(0);
+    	  	manager=new Manager();
+    	  	manager.setManagerid(String.valueOf(map.get("manager_id")));
+    	  	manager.setUsername(String.valueOf(map.get("username")));
+    	  	manager.setPassword(String.valueOf(map.get("password")));
+    	  	manager.setRealname(String.valueOf(map.get("realname")));
+    	  	manager.setEmail(String.valueOf(map.get("email")));
+    	  		  	 
+ 		}
+ 		return manager;
+ 		
+ 		}
+ 	
+}

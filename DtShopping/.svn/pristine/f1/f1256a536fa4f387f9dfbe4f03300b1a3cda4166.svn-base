@@ -1,0 +1,30 @@
+package service;
+
+import java.util.List;
+
+import dao.GoodDaoImpl;
+import model.Good;
+
+/**
+ * 
+ * @author hjl
+ *	time:2017/8/28
+ *
+ */
+public class QueryGoodService {
+	//查询商品，可根据商品类型查询
+	public List quseyGood(Object [] params){
+		List list=null;
+		GoodDaoImpl goodDaoImpl=new GoodDaoImpl();
+		list=goodDaoImpl.queryGood(params);
+		return list;
+	}
+	//查询需要回显的商品信息
+	public Good queryEcho(String goodsid){
+		Good good=null;
+		GoodDaoImpl goodDaoImpl=new GoodDaoImpl();
+		good=goodDaoImpl.queryEchoGood(goodsid);
+		return good;
+	}
+
+}

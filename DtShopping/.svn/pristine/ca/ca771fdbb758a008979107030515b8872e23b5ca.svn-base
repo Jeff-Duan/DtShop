@@ -1,0 +1,51 @@
+package fontAction;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import service.MainQuery;
+import service.typeQueryService;
+import model.Messager;
+
+import com.google.gson.Gson;
+
+import dao.typeidQueryImpl;
+
+@WebServlet("/searchServlet")
+public class searchServlet extends HttpServlet{
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String szhi=request.getParameter("mohuzhi");
+		System.out.println(szhi);
+		typeQueryService typeQuery=new typeQueryService();
+		List list=typeQuery.typeidQuery(szhi);
+		System.out.println(list);
+		MainQuery mainQuery=new MainQuery();
+		//查询热门
+		List list1=mainQuery.hotQuery();
+		request.setAttribute("hotgoods", list1);
+		request.setAttribute("zhi", szhi);
+		
+		
+		if (list.size()==0){
+			System.out.println("没有这个值的模糊搜索");
+			request.getRequestDispatcher("FontJsp/searchno.jsp").forward(request, response);
+			
+		}
+		else {
+			request.setAttribute("list", list);
+			System.out.println("查出来了");
+			System.out.println(list);
+			request.getRequestDispatcher("FontJsp/searchgoods.jsp").forward(request, response);
+		}
+		
+	}
+}

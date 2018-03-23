@@ -1,0 +1,82 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+	<!--
+    	作者：王飞、孙雷
+    	时间：2017-08-28
+    	描述：前台登录
+    -->
+	<head>
+
+
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title></title>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/font/FontLogin.css" />
+		<script src="${pageContext.request.contextPath}/static/js/font/jquery-3.2.1.min.js"></script>
+    	<script src="${pageContext.request.contextPath}/static/js/font/layer/layer.js"></script>
+	</head>
+	<body>
+		<div class="head-logo">
+			<div class="head-logo-a">
+				<img src="${pageContext.request.contextPath}/static/img/fontlogin/yuan.png" />
+			</div>
+		</div>
+		<div class="middle-p" style="background-image: url('${pageContext.request.contextPath}/static/img/fontlogin/1.jpg');">
+			<div class="middle-login">
+				<div class="middle-header">
+					<div class="middle-nav">
+						<a class="a-a" href="javascript:void(0)">账号登录</a>
+						<span class="line"></span>
+						<a class="a-a" href="javascript:void(0)">扫码登录</a>
+					</div>
+					<div class="account-login">
+						<div class="login-area">
+							<form id="login-input" method="post" action="/DtShopping/LoginServlet">
+								<input name="email" class="account-wri" type="text" placeholder="邮箱" />
+								<input name="password" class="pwd-wri" type="password" placeholder="密码" />
+								<input class="button-sumbit" type="submit" value="立即登录" onclick="func"/>
+							</form>
+						</div>
+						<div class="login-other">
+							<a class="out-link" href="${pageContext.request.contextPath}/FontJsp/register.jsp">注册DT账号</a>
+							<span>|</span>
+							<a class="out-link" href="${pageContext.request.contextPath}/FontJsp/backpass.jsp">忘记密码？</a>
+						</div>
+						<div class="bootom-area">	
+								<center><legend  class="oth_type_txt">其他方式登录</legend></center>
+								<div class="other-ogin">
+									<a href=""><img src="${pageContext.request.contextPath}/static/img/fontlogin/qq.png" /></a>
+									<a href=""><img src="${pageContext.request.contextPath}/static/img/fontlogin/wechat.png" /></a>
+									<a href=""><img src="${pageContext.request.contextPath}/static/img/fontlogin/pay.png" /></a>
+								</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="bootom-header">
+			<span class="font-font">制作团队:DREAM TEAM (DT)</span>
+		</div>
+	</body>
+<script type="text/javascript">
+var message = ${message};
+	 if(message==true){
+		 function func() {
+		        layer.alert('登陆成功', {
+		            icon: 6,
+		            skin: 'layui-layer-lan' 
+		        });
+		    }
+	 }else{
+		   function func() {
+		        layer.alert('用户名密码错误，请重新输入',{
+		        	icon: 5,
+		            skin: 'layui-layer-molv'
+		        });
+		    }
+	 }
+</script>
+
+</html>

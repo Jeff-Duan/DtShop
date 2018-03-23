@@ -1,0 +1,98 @@
+package model;
+
+public class Ping {
+	private String goodsname;
+	private String goodsimg;
+	private String goodscount;
+	private String recename;
+	private String dingtime;
+	private String dingnum;
+	private String ordernum;
+	private String goodid;
+	public Ping(String goodsname, String goodsimg, String goodscount,
+			String recename, String dingtime, String dingnum, String ordernum,
+			String goodid) {
+		super();
+		this.goodsname = goodsname;
+		this.goodsimg = goodsimg;
+		this.goodscount = goodscount;
+		this.recename = recename;
+		this.dingtime = dingtime;
+		this.dingnum = dingnum;
+		this.ordernum = ordernum;
+		this.goodid = goodid;
+	}
+	public String getGoodid() {
+		return goodid;
+	}
+	public void setGoodid(String goodid) {
+		this.goodid = goodid;
+	}
+	public String getOrdernum() {
+		return ordernum;
+	}
+	public void setOrdernum(String ordernum) {
+		this.ordernum = ordernum;
+	}
+	public Ping(String goodsname, String goodsimg, String goodscount,
+			String recename, String dingtime, String dingnum, String ordernum) {
+		super();
+		this.goodsname = goodsname;
+		this.goodsimg = goodsimg;
+		this.goodscount = goodscount;
+		this.recename = recename;
+		this.dingtime = dingtime;
+		this.dingnum = dingnum;
+		this.ordernum = ordernum;
+		
+	}
+	public String getGoodsname() {
+		return goodsname;
+	}
+	public void setGoodsname(String goodsname) {
+		this.goodsname = goodsname;
+	}
+	public String getGoodsimg() {
+		return goodsimg;
+	}
+	public void setGoodsimg(String goodsimg) {
+		this.goodsimg = goodsimg;
+	}
+	public String getGoodscount() {
+		return goodscount;
+	}
+	public void setGoodscount(String goodscount) {
+		this.goodscount = goodscount;
+	}
+	public String getRecename() {
+		return recename;
+	}
+	public void setRecename(String recename) {
+		this.recename = recename;
+	}
+	public String getDingtime() {
+		return dingtime;
+	}
+	public void setDingtime(String dingtime) {
+		this.dingtime = dingtime;
+	}
+	public String getDingnum() {
+		return dingnum;
+	}
+	public void setDingnum(String dingnum) {
+		this.dingnum = dingnum;
+	}
+	public Ping(String goodsname, String goodsimg, String goodscount,
+			String recename, String dingtime, String dingnum) {
+		super();
+		this.goodsname = goodsname;
+		this.goodsimg = goodsimg;
+		this.goodscount = goodscount;
+		this.recename = recename;
+		this.dingtime = dingtime;
+		this.dingnum = dingnum;
+	}
+	public Ping() {
+		
+	}
+}

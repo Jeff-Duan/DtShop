@@ -1,0 +1,14 @@
+package service;
+
+import java.util.List;
+
+import dao.ManagerDaoImpl;
+
+public class QueryManagerService {
+	public List queryManagerService(String manangeid,String permission){
+		List list=null;
+		ManagerDaoImpl managerDaoImpl=new ManagerDaoImpl();	
+		list=managerDaoImpl.queryManager(manangeid,permission);
+		return list;
+	}
+}

@@ -1,0 +1,28 @@
+package dao;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import model.Good;
+import model.User;
+import utils.odbcUtils;
+/**
+ * @author dwb已迁出
+ * 锟斤拷锟捷ｏ拷锟斤拷user锟斤拷锟叫诧拷询锟斤拷锟皆憋拷锟教拷锟绞癸拷锟�
+ */
+public class UserDaoImpl {
+	public User login(String email,String password){
+		String sql = "select * from dt_user where email=? and password=?";
+		ArrayList<HashMap<String, Object>> list = odbcUtils.executeQuery(sql, new Object[]{email,password});
+		User user = null;
+		if (list.size()>0) {
+			user = new User();
+			HashMap<String, Object> map = list.get(0);
+			user.setEmail(String.valueOf(map.get("email")));
+			user.setPassword(String.valueOf(map.get("password")));
+		}
+		return user;
+	}
+	
+}

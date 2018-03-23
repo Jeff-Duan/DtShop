@@ -1,0 +1,55 @@
+package fontAction;
+
+/*
+ * @author xpl
+ *time:2017/8/28
+ * */
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+import service.MainQuery;
+
+
+@WebServlet("/MainServlet")
+public class MainServlet extends HttpServlet {
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		MainQuery mainQuery=new MainQuery();
+		//查询手机  电话卡
+		List list=mainQuery.eQuery();
+	    //查询热门
+		List list1=mainQuery.hotQuery();
+		//查询华为专区
+		List list2=mainQuery.zhuanquQuery(1);
+		//查询小米专区
+		List list3=mainQuery.zhuanquQuery(4);
+		//查询苹果专区
+		List list4=mainQuery.zhuanquQuery(2);
+		//查询笔记本专区
+		List list5=mainQuery.zhuanquQuery(19);
+		//查询平板专区
+		List list6=mainQuery.zhuanquQuery(18);
+		//查询路由器专区
+		List list7=mainQuery.zhuanquQuery(20);
+		//查询移动电源专区
+		List list8=mainQuery.zhuanquQuery(1);
+		request.setAttribute("goodsdata", list);
+		request.setAttribute("hotgoods", list1);
+		request.setAttribute("huaweigoods", list2);
+		request.setAttribute("xiaomigoods", list3);
+		request.setAttribute("iphonegoods", list4);
+		request.setAttribute("mac", list5);
+		request.setAttribute("pad", list6);
+		request.setAttribute("luyou", list7);
+		request.setAttribute("cdb", list8);
+		request.getRequestDispatcher("FontJsp/main.jsp").forward(request, response);
+	}
+}

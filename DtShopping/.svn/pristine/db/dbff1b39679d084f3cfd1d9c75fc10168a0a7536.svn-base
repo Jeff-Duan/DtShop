@@ -1,0 +1,29 @@
+package service;
+
+import dao.PhoImpl;
+import model.CarCar;
+import model.PhoPhoto;
+
+/**
+ * 
+ * @author wf
+ *
+ */
+public class PhoService {
+	public PhoPhoto getPhoPhoto(String id) {
+		PhoImpl phoImpl = new PhoImpl();
+		PhoPhoto phoPhoto = phoImpl.selectPhoto(id);
+		return phoPhoto;
+	}
+	public int addCar(CarCar car){
+		PhoImpl p=new PhoImpl();
+		int i =p.addCar(car);
+		return i;
+	}
+	public CarCar[] getCarCar(String id){
+		PhoImpl phoImpl = new PhoImpl();
+		CarCar car[]= phoImpl.selectcar(id);
+		return car;
+	}
+	
+}

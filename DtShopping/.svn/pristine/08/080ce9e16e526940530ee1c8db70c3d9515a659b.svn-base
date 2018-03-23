@@ -1,0 +1,73 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<!--
+	作者：王飞、孙雷
+	时间：2017-08-28
+	描述：注册首页
+-->
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title></title>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/font/register.css" />
+		<script src="${pageContext.request.contextPath}/static/js/font/layer/layer.js"></script>
+		<script src="${pageContext.request.contextPath}/static/js/font/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body >
+		<div class="bod">	
+			<div class="center">
+				<img src="${pageContext.request.contextPath}/static/img/fontlogin/yuan.png" />
+				<div class="top-header">
+					
+					<h4 class="titlea">注册DT账号</h4>
+				</div>
+				<form class="regist"  method="post" action="${pageContext.request.contextPath}/RegisterServlet">
+					<div class="pho-stp">
+						<h4 class="pho-email">电子邮箱</h4>
+						<input name="email" class="email-login" type="email" placeholder="请输入邮箱账号" />
+						<h4 class="pho-email1">验证码</h4>
+						<input class="pho-yan" name="validate" type="text" placeholder="请输入验证码，不区分大小写" />
+						<span class="span"> <img id="validate"
+						src="/DtShopping/ValidateServlet" onclick="fresh()">
+					</span>
+
+					</div>
+					
+					<input id ="pho-button" type="button"  class="pho-button" value="立即注册" onclick="func()" />
+					<span class="regis-as">注册帐号即表示您同意并愿意遵守DT用户协议</span>
+					<span class="regis-as1">和隐私政策</span>
+				</form>
+			</div>
+		</div>
+		<div class="bootom-header">
+			<span class="font-font">制作团队:DREAM TEAM (DT)</span>
+		</div>
+	</body>
+	<script type="text/javascript">
+	function fresh() {
+		var timetampv = new Date().getTime();
+		$("#validate").attr("src",
+				'/DtShopping/ValidateServlet?random' + timetampv)
+	};
+	function func() {
+		layer.alert('欢迎注册DT商城，请尽快到你注册的邮箱进行账号激活！', {
+            icon: 1,
+            skin: 'layer-ext-moon' 
+        });
+	} 
+	/* document.getElementById("pho-button").onclick=function (){
+		 layer.alert('欢迎注册DT商城，请尽快到你注册的邮箱进行账号激活！', {
+            icon: 1,
+            skin: 'layer-ext-moon' 
+        }); 
+       
+	} */
+		
+	
+	
+	</script>
+
+</html>

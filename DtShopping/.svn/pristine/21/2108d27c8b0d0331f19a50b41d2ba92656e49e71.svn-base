@@ -1,0 +1,88 @@
+package service;
+
+import dao.PhoImpl;
+import model.Address;
+import model.CarCar;
+import model.PhoPhoto;
+import model.Ping;
+import model.SecUser;
+
+/**
+ * 
+ * @author wf
+ *
+ */
+public class PhoService {
+	PhoImpl phoImpl = new PhoImpl();
+	public PhoPhoto getPhoPhoto(String id) {
+		
+		PhoPhoto phoPhoto = phoImpl.selectPhoto(id);
+		return phoPhoto;
+	}
+	public int addCar(CarCar car){	
+		int i =phoImpl.addCar(car);
+		return i;
+	}
+	public CarCar[] getCarCar(String id){
+		
+		CarCar car[]= phoImpl.selectcar(id);
+		return car;
+	}
+	public CarCar[] getCarCar1(String id){
+		CarCar car[]= phoImpl.selectcar1(id);
+		return car;
+	}
+	 public String[] selPho(String[] id){
+		String isHave[] = phoImpl.selCar(id);
+		return isHave;
+	 }
+	 
+	 public int updateCar(CarCar car){
+		 int i = phoImpl.updateCar(car);
+		 return i;
+	 }
+	 public String getString(String id) {
+		String summoney= phoImpl.getString(id);
+		return summoney;
+	}
+	 public String getString1(String id) {
+			String summoney= phoImpl.getString1(id);
+			return summoney;
+		}
+	 public String getAddressid(String id) {
+			String summoney= phoImpl.getaddress(id);
+			return summoney;
+		}
+	 
+	 public int delCar(String id){
+		 int i = phoImpl.delCar(id);
+		 return i;
+	 }
+	 public int address(String id,SecUser secUser){
+		int addreeid = phoImpl.address(id, secUser);
+		return addreeid;
+	 }
+	 public int addorder(String user_id,String add_id,String orderprice,String sum) {
+		 int i = phoImpl.addorder(user_id, add_id, orderprice, sum);
+		 return i;
+	 }
+	 public String getsummon(String id) {
+			String summoney= phoImpl.getsummon(id);
+			return summoney;
+		}
+	 public void updateState(String id){
+		 phoImpl.updateCar(id);
+	 }
+	 public Address getAddress(String id){
+		 Address address= phoImpl.getAddress(id);
+		 return address;
+	 }
+	 public Ping[] getPings(String id){
+		 Ping ping[]=phoImpl.getPing(id);
+		 return ping;
+	 }
+	 public Ping[] getPings1(String id,String goodsid){
+		 Ping ping[]=phoImpl.getPing1(id,goodsid);
+		 return ping;
+	 }
+}

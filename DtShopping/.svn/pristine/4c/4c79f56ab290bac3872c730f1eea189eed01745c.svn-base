@@ -1,0 +1,255 @@
+<%@page import="utils.PageModel"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="/DtShopping/static/css/font/bootstrap1.css" />
+		<link rel="stylesheet" href="/DtShopping/static/css/font/searchno.css" />
+		<script type="text/javascript" src="/DtShopping/static/js/font/jquery-3.2.1.min.js" ></script>
+		<script type="text/javascript" src="/DtShopping/static/js/font/bootstrap.min.js" ></script>
+		<script type="text/javascript" src="/DtShopping/static/js/font/main.js" ></script>
+		
+	</head>
+	
+<body>
+<%@ include file="Header.jsp" %>
+	<%
+		PageModel pageModel=(PageModel)request.getAttribute("pageModel");
+		String zhi=(String)request.getAttribute("zhi");
+	%>
+	<div id="searchkuang">
+			<div style="padding-left: 65px;"><a href="/DtShopping/MainServlet">首页&nbsp;</a>><a href="/DtShopping/searchServlet?mohuzhi=<%=zhi%>">&nbsp;全部结果&nbsp;</a>>&nbsp;<%=zhi%></div>
+			<div id="searchmu">
+				<ul class="w1">
+					<li>分类：&nbsp;&nbsp;&nbsp;全部</li>
+					<li>路由器</li>
+					<li>内存条</li>
+					<li>头戴式耳机</li>
+					<li>保护壳</li>
+					<li>平板</li>
+					<li>笔记本</li>
+					<li>盒子</li>
+					<li id="more1" style="margin-left: 60px;width: 40px;">更多∨</li>
+				</ul>	
+			</div>
+			<div id="xiala1" hidden="hidden"></div>
+			<div id="searchmu1">
+				<ul class="w1">
+					<li>分类：&nbsp;&nbsp;&nbsp;全部</li>
+					<li>路由器</li>
+					<li>内存条</li>
+					<li>头戴式耳机</li>
+					<li>保护壳</li>
+					<li>平板</li>
+					<li>笔记本</li>
+					<li>盒子</li>
+					<li id="more2" style="margin-left: 60px;width: 40px;">更多∨</li>
+				</ul>	
+			</div>
+			<div id="xiala2" hidden="hidden" ></div>
+			<div id="searchmu1">
+				<ul class="w1">
+					<li>分类：&nbsp;&nbsp;&nbsp;全部</li>
+					<li>路由器</li>
+					<li>内存条</li>
+					<li>头戴式耳机</li>
+					<li>保护壳</li>
+					<li>平板</li>
+					<li>笔记本</li>
+					<li>盒子</li>
+					<li id="more3" style="margin-left: 60px;width: 40px;">更多∨</li>
+				</ul>	
+			</div>
+			<div id="xiala3" hidden="hidden"></div>
+			
+			<div id="goodsdisplay">
+				<div id="goodspaly-header">
+				<ul id="ulone">
+					<li style="width: 50px;">推荐</li>
+					<li class="ulone-ge">新品</li>
+					<li class="ulone-ge">价格&nbsp;↑</li>
+					<li class="ulone-ge">热评</li>
+				</ul>
+				<ul id="ultwo">
+					<li style="width: 100px;"><input type="checkbox"/>查看评价</li>
+					<li><input type="checkbox"/>仅显示特惠商品</li>
+					<li style="width:119px ;"><input type="checkbox"/>仅显示有货商品</li>
+				</ul>
+				</div>
+				
+				<div id="goodspaly-big">
+					<div id="zhanshi">
+						<ul>
+							<%for(int i=0;i<pageModel.getList().size();i++){
+								HashMap hsMap=(HashMap)pageModel.getList().get(i);
+							%>
+								<li>
+									<img src="/DtShopping/static/img/mainimg/<%=hsMap.get("goodsimg")%>" alt="通用的占位符缩略图"/>
+									<%=hsMap.get("goodsname")%>
+									<p style="color:orangered"><%=hsMap.get("goodsprice")%></p>
+								</li>
+							<%
+								}
+							%>
+						</ul>
+					</div>
+					<div id="fenbtn">
+					第<select  id="page"  style="height: 30px;width: 50px;">
+						<option><%=pageModel.getPage()%></option>
+					</select>页
+					<button type="button" id="fbtn1"
+						class="btn btn-default" 
+						aria-label="Left Align"> 
+						<img src="/DtShopping/static/img/mainimg/j3.jpg" style="height:12px" />
+					</button>
+					<button type="button" id="fbtn2"
+						class="btn btn-default" 
+						aria-label="Left Align"> 
+						<img src="/DtShopping/static/img/mainimg/j4.jpg" style="height:12px" />	
+					</button>
+					<label>共有<%=pageModel.getTotalPage() %>页</label>
+					</div>
+				</div>
+			</div>
+		</div>
+			 <!--热门栏-->
+		<div id="photolan1">
+			<div id="bao">
+				热门<span style="color: red;">推荐</span>
+				<button type="button" id="phbtn1"
+					class="btn btn-default" 
+					aria-label="Left Align"> 
+					<img src="/DtShopping/static/img/mainimg/j3.jpg" style="height:12px" />
+				</button>
+				<button type="button" id="phbtn2"
+					class="btn btn-default" 
+					aria-label="Left Align"> 
+					<img src="/DtShopping/static/img/mainimg/j4.jpg" style="height:12px" />	
+				</button>			
+			</div>
+			<div id="hot">
+			<%
+				List list1=(List)request.getAttribute("hotgoods");
+			%>
+    			<div class="mobanlian" id="qq" >
+        			<div class="thumbnail">
+         				<img src="/DtShopping/static/img/mainimg/<%=((HashMap)list1.get(0)).get("goodsimg")%>" alt="通用的占位符缩略图"/>
+            			<div class="caption">
+               				<%=((HashMap)list1.get(0)).get("goodsname")%><br/>
+               				<p><%=((HashMap)list1.get(0)).get("goodsprice")%>元</p>
+            			</div>
+        			</div>
+    			</div>
+   				<div id="ww" class="mobanlian" >
+       				<div class="thumbnail">
+         				<img src="/DtShopping/static/img/mainimg/<%=((HashMap)list1.get(1)).get("goodsimg")%>" alt="通用的占位符缩略图"/>
+            			<div class="caption">
+               				<%=((HashMap)list1.get(1)).get("goodsname")%><br/>
+               				<p><%=((HashMap)list1.get(1)).get("goodsprice")%>元</p>
+            			</div>
+        			</div>
+    			</div>
+    			<div id="ee" class="mobanlian">
+        			<div class="thumbnail">
+         				<img src="/DtShopping/static/img/mainimg/<%=((HashMap)list1.get(2)).get("goodsimg")%>" alt="通用的占位符缩略图"/>
+            			<div class="caption">
+               				<%=((HashMap)list1.get(2)).get("goodsname")%><br/>
+               				<p><%=((HashMap)list1.get(2)).get("goodsprice")%>元</p>
+            			</div>
+        			</div>
+    			</div>
+    			<div  id="rr" class="mobanlian">
+        			<div class="thumbnail">
+         				<img src="/DtShopping/static/img/mainimg/<%=((HashMap)list1.get(3)).get("goodsimg")%>" alt="通用的占位符缩略图"/>
+            			<div class="caption">
+               				<%=((HashMap)list1.get(3)).get("goodsname")%>
+               				<p><%=((HashMap)list1.get(3)).get("goodsprice")%>元</p>
+            			</div>
+        			</div>
+    			</div>
+				<div id="tt" class="mobanlian">
+        			<div class="thumbnail">
+         				<img src="/DtShopping/static/img/mainimg/<%=((HashMap)list1.get(4)).get("goodsimg")%>" alt="通用的占位符缩略图"/>
+            			<div class="caption">
+               				<%=((HashMap)list1.get(4)).get("goodsname")%><br/>
+               				<p><%=((HashMap)list1.get(4)).get("goodsprice")%>元</p>
+            			</div>
+        			</div>
+    			</div>
+    			<div id="yy" class="mobanlian" hidden="hidden">
+        			<div class="thumbnail">
+         				<img src="/DtShopping/static/img/mainimg/<%=((HashMap)list1.get(5)).get("goodsimg")%>" alt="通用的占位符缩略图"/>
+            			<div class="caption">
+               				<%=((HashMap)list1.get(5)).get("goodsname")%><br/>
+               				<p><%=((HashMap)list1.get(5)).get("goodsprice")%>元</p>
+            			</div>
+        			</div>
+    			</div>
+    			<div id="uu" class="mobanlian" hidden="hidden">
+        			<div class="thumbnail">
+         				<img src="/DtShopping/static/img/mainimg/<%=((HashMap)list1.get(6)).get("goodsimg")%>" alt="通用的占位符缩略图"/>
+            			<div class="caption">
+               				<%=((HashMap)list1.get(6)).get("goodsname")%><br/>
+               				<p><%=((HashMap)list1.get(6)).get("goodsprice")%>元</p>
+            			</div>
+        			</div>
+    			</div>
+    			<div id="ii" class="mobanlian" hidden="hidden">
+        			<div class="thumbnail">
+         				<img src="/DtShopping/static/img/mainimg/<%=((HashMap)list1.get(7)).get("goodsimg")%>" alt="通用的占位符缩略图"/>
+            			<div class="caption">
+               				<%=((HashMap)list1.get(7)).get("goodsname")%><br/>
+               				<p><%=((HashMap)list1.get(7)).get("goodsprice")%>元</p>
+            			</div>
+        			</div>
+    			</div>
+    			<div id="oo" class="mobanlian" hidden="hidden">
+        			<div class="thumbnail">
+         				<img src="/DtShopping/static/img/mainimg/<%=((HashMap)list1.get(8)).get("goodsimg")%>" alt="通用的占位符缩略图"/>
+            			<div class="caption">
+               				<%=((HashMap)list1.get(8)).get("goodsname")%><br/>
+               				<p><%=((HashMap)list1.get(8)).get("goodsprice")%>元</p>
+            			</div>
+        			</div>
+    			</div>
+    			<div id="pp" class="mobanlian" hidden="hidden">
+        			<div class="thumbnail">
+         				<img src="/DtShopping/static/img/mainimg/<%=((HashMap)list1.get(9)).get("goodsimg")%>" alt="通用的占位符缩略图"/>
+            			<div class="caption">
+               				<%=((HashMap)list1.get(9)).get("goodsname")%><br/>
+               				<p><%=((HashMap)list1.get(9)).get("goodsprice")%>元</p>
+            			</div>
+        			</div>
+    			</div>
+			</div>
+			<input id="zhi" type="hidden" value=<%=zhi%>>
+		</div>
+	<%@ include file="Footer.jsp" %>
+	<script>
+			$(document).ready(function(){
+				$("#fbtn1").on("click",function(){
+					var page=$("#page").val();
+					var mohuzhi=$("#zhi").val();
+					if(page>1){
+						location.href = "searchServlet?a=1&page=<%=pageModel.getPage()%>&mohuzhi="+mohuzhi;
+					}
+				})
+				
+				$("#fbtn2").on("click",function(){
+					var page=$("#page").val();
+					var mohuzhi=$("#zhi").val();
+					if(page<<%=pageModel.getTotalPage() %>){
+						location.href = "searchServlet?a=0&page=<%=pageModel.getPage()%>&mohuzhi="+mohuzhi;
+					}
+					
+				})
+				
+			})
+		</script>
+</body>
+</html>

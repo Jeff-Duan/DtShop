@@ -1,0 +1,102 @@
+<%@page import="model.CarCar"%>
+<%@page import="model.ShowList"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link rel="stylesheet" href="/DtShopping/static/css/font/mycss2.css" />
+<link rel="stylesheet" href="/DtShopping/static/css/font/bootstrap1.css" />
+<script type="text/javascript"
+	src="/DtShopping/static/js/font/jquery-3.2.1.min.js"></script>
+<script type="text/javascript"
+	src="/DtShopping/static/js/font/bootstrap.min.js"></script>
+<script type="text/javascript" src="/DtShopping/static/js/font/main.js"></script>
+
+
+</head>
+
+
+<body>
+	<%
+		CarCar car[] = (CarCar[]) request.getAttribute("car");
+	%>
+	<%@ include file="Header.jsp"%>
+	<div class="big-box">
+		<div class="box-box">
+			<div class="title">
+				<h2>购物清单</h2>
+			</div>
+			<div class="two">
+				<span class="name">商品信息</span> <span class="operation">操作</span> <span
+					class="subtotal">小计</span> <span class="num">数量</span> <span
+					class="price">单价</span>
+			</div>
+			<%-- <c:forEach items="${car}" var="cars"> --%>
+			<%
+				for (int i = 0; i < car.length; i++) {
+					CarCar cc = car[i];
+			%>
+			<div class="two-content" value="<%=cc.getUserid()%>">
+				<div class="pho-car">
+					<img src="/DtShopping/static/img/mainimg/<%=cc.getGoodimg()%>" />
+				</div>
+				<div class="pho-car1">
+					<span class="pin-pai"><%=cc.getGoodname()%></span>
+				</div>
+				<div class="danjia">
+					<span class="mon-ey">￥<%=cc.getGoodprice()%></span>
+				</div>
+				<div class="sum-shu">
+
+					<label class="mon1"><%=cc.getCount()%></label>
+
+				</div>
+				<div class="sum-mon">
+					<span class="sum">￥<%=cc.getCarmoney()%><label class="mon"></label></span>
+					<img id="shan" class="asas2" alt=<%=cc.getCarid()%>
+						src="/DtShopping/static/img/car/shan.png" />
+				</div>
+			</div>
+			<%
+				};
+			%>
+			<%-- 	</c:forEach> --%>
+			<div class="threr">
+				<div class="sjiji">
+					<h4 class="hhh4">
+						共计金额： <strong>￥${mon}</strong>
+					</h4>
+				</div>
+				<div class="bootom1">
+					<a href="/DtShopping/CarcarcaServlet" class="carcar1">结算</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%@ include file="Footer.jsp"%>
+</body>
+<script type="text/javascript">
+	$(".asas2").mousedown(function(){
+		$.ajax({
+			url : "/DtShopping/DelServlet",
+			type : "post",
+			dataType : "text",
+			async : false,
+			data : {id:$(this).attr("alt")},
+			success : function(result) {
+			var message = $.parseJSON(result);
+				window.location.reload();
+			},
+			error : function(data) {
+				alert("连接失败");
+			}
+		});
+	});
+</script>
+
+</html>

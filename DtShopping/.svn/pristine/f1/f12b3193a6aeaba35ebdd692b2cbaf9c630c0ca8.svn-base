@@ -1,0 +1,255 @@
+
+<%@page import="model.User"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<header>
+				<%
+					User user=(User)session.getAttribute("user");
+				%>
+			<ul>
+				<li><a href="/DtShopping/MainServlet?id=${user.getUsername()}">DT商城</a></li>
+				<li><a href="#">企业采购</a></li>
+				<li><a href="#">在线客服</a></li>
+				<li><a href="#">手机DT</a></li>
+				<li><a href="#">闪购</a></li>
+				<li><a href="#">优惠活动</a></li>
+				<li><a href="#">问题反馈</a></li>
+				<li><a href="#">售后服务</a></li>
+				<li id="header-ul-li-right">
+					<c:choose>
+						<c:when test="${empty user}">
+							<a href="${pageContext.request.contextPath}/FontJsp/login.jsp">请先登录</a>  
+						</c:when>
+						<c:otherwise>
+							欢迎${user.getUsername()}
+						</c:otherwise>
+					</c:choose> 
+				</li>
+				<li><a href="${pageContext.request.contextPath}/FontJsp/register.jsp">注册</a></li>
+				<li><a href="${pageContext.request.contextPath}/grServlet">个人信息</a></li>	
+				<li><a href="/DtShopping/CarCarServlet">购物车</a></li>
+				<li><a href="${pageContext.request.contextPath}/FontJsp/login.jsp">退出</a></li>				
+			</ul>	
+		</header>
+		<div id="aa">
+			<div id ="zhong">
+				<ul id="zhong-ul">
+					<li><a href="#"><img src="/DtShopping/static/img/mainimg/yuanTu.png"/></a></li>
+					<li id="zhong-ul-li-ge" class="ul-li"><a href="#">优惠专区</a></li>
+					<li id="hongmi" class="ul-li"><a href="#">一元抢购</a></li>
+					<li id="pingban" class="ul-li"><a href="#">精品推荐</a></li>
+					<li id="TV" class="ul-li"><a href="#">平板&nbsp;·&nbsp;笔记本</a></li>
+					<li class="ul-li"><a href="#"></a>电视</li>
+					<li class="ul-li"><a href="#">智能硬件</a></li>
+					<li><a href="#">服务</a></li>
+					<li><a href="#">社区</a></li>
+					<li id="zhong-ul-li-hou">
+					<form action="/DtShopping/searchServlet">
+						<input type="text"  name="mohuzhi" style="height: 45px;width: 200px;">
+					 	<button type="submit"  class="btn btn-default btn-lg" id="mohusearch">
+							<img src="/DtShopping/static/img/mainimg/serch.jpg" style="height: 18px;"/>
+						</button>
+					</form>
+					</li>
+				</ul>	
+			</div>
+			<div id="pan1">
+				<!--第一个展示条-->
+				<div id="one">
+    				<div class="mobanlian-two">
+         				<div class="thumbnail">
+            				<img src="/DtShopping/static/img/mainimg/honorMagice.png" alt="通用的占位符缩略图">
+            					<div class="caption">
+                					华为
+                					<p style="color:orange">2299元</p>	
+                				</div>
+        				</div>
+   					</div>
+    				<div class="mobanlian-two">
+        				<div class="thumbnail">
+            				<img src="/DtShopping/static/img/mainimg/360F4S.png" alt="通用的占位符缩略图">
+            					<div class="caption">
+                					360F4S
+                					<p style="color:orange">2669元</p>	
+            					</div>
+        				</div>
+    				</div>
+   					<div class="mobanlian-two">
+        				<div class="thumbnail">
+            				<img src="/DtShopping/static/img/mainimg/一加5.png" alt="通用的占位符缩略图">
+            					<div class="caption">
+                					1+5
+                					<p style="color:orange">3000元</p>	
+            					</div>
+        				</div>
+    				</div>
+    				<div class="mobanlian-two">
+        				<div class="thumbnail">
+            				<img src="/DtShopping/static/img/mainimg/miMixb.png" alt="通用的占位符缩略图">
+            					<div class="caption">
+                					小米
+                					<p style="color:orange">2999元</p>
+            					</div>
+        				</div>
+    				</div>
+    				<div class="mobanlian-two">
+        				<div class="thumbnail">
+            				<img src="/DtShopping/static/img/mainimg/oppoR11.jpg" alt="通用的占位符缩略图">
+            					<div class="caption">
+                					oppo
+                					<p style="color:orange">2899元</p>
+            					</div>
+        				</div>
+    				</div>
+				</div>
+				<!--第二个展示条-->
+				<div id="two" hidden="hidden">
+    				<div class="mobanlian-two">
+         				<div class="thumbnail">
+            				<img src="/DtShopping/static/img/mainimg/oppoR9sPlus.png" alt="通用的占位符缩略图">
+            					<div class="caption">
+                					oppoR9sPlus
+                					<p style="color:red">1元抢！！！</p>	
+                				</div>
+        				</div>
+   					</div>
+    				<div class="mobanlian-two">
+        				<div class="thumbnail">
+            				<img src="/DtShopping/static/img/mainimg/sonyXZs.png" alt="通用的占位符缩略图">
+            					<div class="caption">
+                					索尼XZs
+                					<p style="color:red">1元抢！！！</p>		
+            					</div>
+        				</div>
+    				</div>
+   					<div class="mobanlian-two">
+        				<div class="thumbnail">
+            				<img src="/DtShopping/static/img/mainimg/vivoXplay6.png" alt="通用的占位符缩略图">
+            					<div class="caption">
+                					vivoXplay6
+                					<p style="color:red">1元抢！！！</p>		
+            					</div>
+        				</div>
+    				</div>
+    				<div class="mobanlian-two">
+        				<div class="thumbnail">
+            				<img src="/DtShopping/static/img/mainimg/smartPROs.png" alt="通用的占位符缩略图">
+            					<div class="caption">
+                					smartPROs
+                					<p style="color:red">1元抢！！！</p>	
+            					</div>
+        				</div>
+    				</div>
+    				<div class="mobanlian-two">
+        				<div class="thumbnail">
+            				<img src="/DtShopping/static/img/mainimg/gioneeM6.png" alt="通用的占位符缩略图">
+            					<div class="caption">
+                					gioneeM6
+                					<p style="color:red">1元抢！！！</p>	
+            					</div>
+        				</div>
+    				</div>
+				</div>
+				<!--第三个展示条-->
+				<div id="three" hidden="hidden">
+    				<div class="mobanlian-two">
+         				<div class="thumbnail">
+            				<img src="/DtShopping/static/img/mainimg/honor6A.png" alt="通用的占位符缩略图">
+            					<div class="caption">
+                					华为
+                					<p style="color:orange">3299元</p>	
+                				</div>
+        				</div>
+   					</div>
+    				<div class="mobanlian-two">
+        				<div class="thumbnail">
+            				<img src="/DtShopping/static/img/mainimg/htcU11r.png" alt="通用的占位符缩略图">
+            					<div class="caption">
+                					htc
+                					<p style="color:orange">2199元</p>	
+            					</div>
+        				</div>
+    				</div>
+   					<div class="mobanlian-two">
+        				<div class="thumbnail">
+            				<img src="/DtShopping/static/img/mainimg/gioneeS10.png" alt="通用的占位符缩略图">
+            					<div class="caption">
+                					gioneeS10
+                					<p style="color:orange">3000元</p>	
+            					</div>
+        				</div>
+    				</div>
+    				<div class="mobanlian-two">
+        				<div class="thumbnail">
+            				<img src="/DtShopping/static/img/mainimg/honorV9.png" alt="通用的占位符缩略图">
+            					<div class="caption">
+                					华为荣耀v9
+                					<p style="color:orange">3799元</p>
+            					</div>
+        				</div>
+    				</div>
+    				<div class="mobanlian-two">
+        				<div class="thumbnail">
+            				<img src="/DtShopping/static/img/mainimg/iPhone7.jpg" alt="通用的占位符缩略图">
+            					<div class="caption">
+                					苹果7
+                					<p style="color:orange">4299元</p>
+            					</div>
+        				</div>
+    				</div>
+				</div>
+				<!--第四个展示条-->
+				<div id="four" hidden="hidden">
+    				<div class="mobanlian-two">
+         				<div class="thumbnail">
+            				<img src="/DtShopping/static/img/mainimg/HpadC2.png" alt="通用的占位符缩略图">
+            					<div class="caption">
+                					HpadC2
+                					<p style="color:orange">3299元</p>	
+                				</div>
+        				</div>
+   					</div>
+    				<div class="mobanlian-two">
+        				<div class="thumbnail">
+            				<img src="/DtShopping/static/img/mainimg/HpadM3.png" alt="通用的占位符缩略图">
+            					<div class="caption">
+                					HpadM3
+                					<p style="color:orange">3000元</p>	
+            					</div>
+        				</div>
+    				</div>
+   					<div class="mobanlian-two">
+        				<div class="thumbnail">
+            				<img src="/DtShopping/static/img/mainimg/iPadmini4.png" alt="通用的占位符缩略图">
+            					<div class="caption">
+                					iPadmini4
+                					<p style="color:orange">4299元</p>	
+            					</div>
+        				</div>
+    				</div>
+    				<div class="mobanlian-two">
+        				<div class="thumbnail">
+            				<img src="/DtShopping/static/img/mainimg/iPadPro.png" alt="通用的占位符缩略图">
+            					<div class="caption">
+                					iPadPro
+                					<p style="color:orange">4799元</p>
+            					</div>
+        				</div>
+    				</div>
+    				<div class="mobanlian-two">
+        				<div class="thumbnail">
+            				<img src="/DtShopping/static/img/mainimg/Mpad.png" alt="通用的占位符缩略图">
+            					<div class="caption">
+                					Mpad
+                					<p style="color:orange">3299元</p>
+            					</div>
+        				</div>
+    				</div>
+				</div>
+			</div>	
+		</div>
+		
+</html>

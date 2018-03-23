@@ -1,0 +1,187 @@
+
+<%@page import="model.User"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<header>
+			<ul>
+				<li><a href="#">DT商城</a></li>
+				<li><a href="#">企业采购</a></li>
+				<li><a href="#">在线客服</a></li>
+				<li><a href="#">售后服务</a></li>
+				<li><a href="#">手机DT</a></li>
+				<li><a href="#">网站导航</a></li>
+				<li><a href="#">闪购</a></li>
+				<li><a href="#">优惠活动</a></li>
+				<li><a href="#">问题反馈</a></li>
+				<li id="header-ul-li-right">
+				 
+				 <%
+					 User user=null;
+				 
+				 	if(null != session.getAttribute("user")){
+				 		user=(User)request.getAttribute("user");
+				 		}
+				 %>	
+				 
+				 
+					<a href="${pageContext.request.contextPath}/FontJsp/login.jsp">
+					 <c:choose>
+						<c:when test="${empty user}">
+							请先登录
+						</c:when>
+						<c:otherwise>
+							欢迎光临
+						</c:otherwise>
+					</c:choose> 
+					
+					</a>
+				</li>
+				<li><a href="${pageContext.request.contextPath}/FontJsp/register.jsp">注册</a></li>
+				<li><a href="#">消息通知</a></li>		
+			</ul>	
+		</header>
+		<div id="aa">
+			<div id ="zhong">
+				<ul id="zhong-ul">
+					<li><a href="#"><img src="/DtShopping/static/img/mainimg/yuanTu.png"/></a></li>
+					<li id="zhong-ul-li-ge" class="ul-li"><a href="#">手机</a></li>
+					<li id="hongmi" class="ul-li"><a href="#">手机配件</a></li>
+					<li id="pingban" class="ul-li"><a href="#">平板&nbsp;·&nbsp;笔记本</a></li>
+					<li id="TV" class="ul-li"><a href="#">电视</a></li>
+					<li class="ul-li"><a href="#">盒子</a></li>
+					<li class="ul-li"><a href="#">路由器</a></li>
+					<li class="ul-li"><a href="#">智能硬件</a></li>
+					<li><a href="#">服务</a></li>
+					<li><a href="#">社区</a></li>
+					<li id="zhong-ul-li-hou">
+						<input type="text"/ style="height: 50px;width: 230px;margin: 0px;">
+						<button type="button"  class="btn btn-default btn-lg">
+							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+						</button>
+					</li>
+				</ul>	
+			</div>
+			<div id="pan1">
+				<!--第一个展示条-->
+				<div id="one">
+    				<div class="mobanlian-two">
+         				<div class="thumbnail">
+            				<img src="/DtShopping/static/img/mainimg/mi1.png" alt="通用的占位符缩略图">
+            					<div class="caption">
+                					一些示例文本。
+                					<br/>一些示例文本。	
+                				</div>
+        				</div>
+   					</div>
+    				<div class="mobanlian-two">
+        				<div class="thumbnail">
+            				<img src="/DtShopping/static/img/mainimg/mi2.png" alt="通用的占位符缩略图">
+            					<div class="caption">
+                					一些示例文本。
+                					<br/>一些示例文本。
+            					</div>
+        				</div>
+    				</div>
+   					<div class="mobanlian-two">
+        				<div class="thumbnail">
+            				<img src="/DtShopping/static/img/mainimg/mi3.jpg" alt="通用的占位符缩略图">
+            					<div class="caption">
+                					一些示例文本。
+                					<br/>一些示例文本。
+            					</div>
+        				</div>
+    				</div>
+    				<div class="mobanlian-two">
+        				<div class="thumbnail">
+            				<img src="/DtShopping/static/img/mainimg/mi1.png" alt="通用的占位符缩略图">
+            					<div class="caption">
+                					一些示例文本。
+                					<br/>一些示例文本。
+            					</div>
+        				</div>
+    				</div>
+				</div>
+				<!--第二个展示条-->
+				<div id="two" hidden="hidden">
+    				<div class="mobanlian-two">
+         				<div class="thumbnail">
+            				<img src="/DtShopping/static/img/mainimg/mi1.png" alt="通用的占位符缩略图">
+            					<div class="caption">
+                					一些示例文本。
+                					<br/>一些示例文本。	
+                				</div>
+        				</div>
+   					</div>
+    				<div class="mobanlian-two">
+        				<div class="thumbnail">
+            				<img src="/DtShopping/static/img/mainimg/mi1.png" alt="通用的占位符缩略图">
+            					<div class="caption">
+                					一些示例文本。
+                					<br/>一些示例文本。
+            					</div>
+        				</div>
+    				</div>
+    				<div class="mobanlian-two">
+        				<div class="thumbnail">
+            				<img src="/DtShopping/static/img/mainimg/mi1.png" alt="通用的占位符缩略图">
+            					<div class="caption">
+                					一些示例文本。
+                					<br/>一些示例文本。
+            					</div>
+        				</div>
+    				</div>
+    				<div class="mobanlian-two">
+        				<div class="thumbnail">
+            				<img src="/DtShopping/static/img/mainimg/mi1.png" alt="通用的占位符缩略图">
+            					<div class="caption">
+                					一些示例文本。
+                					<br/>一些示例文本。
+            					</div>
+        				</div>
+    				</div>
+				</div>
+				<!--第三个展示条-->
+				<div id="three" hidden="hidden">
+    				<div class="mobanlian-two">
+         				<div class="thumbnail">
+            				<img src="/DtShopping/static/img/mainimg/mi1.png" alt="通用的占位符缩略图">
+            					<div class="caption">
+                					一些示例文本。
+                					<br/>一些示例文本。	
+                				</div>
+        				</div>
+   					</div>
+    				<div class="mobanlian-two">
+        				<div class="thumbnail">
+            				<img src="/DtShopping/static/img/mainimg/mi2.png" alt="通用的占位符缩略图">
+            					<div class="caption">
+                					一些示例文本。
+                					<br/>一些示例文本。
+            					</div>
+        				</div>
+    				</div>
+   					<div class="mobanlian-two">
+        				<div class="thumbnail">
+            				<img src="/DtShopping/static/img/mainimg/mi3.jpg" alt="通用的占位符缩略图">
+            					<div class="caption">
+                					一些示例文本。
+                					<br/>一些示例文本。
+            					</div>
+        				</div>
+    				</div>
+    				<div class="mobanlian-two">
+        				<div class="thumbnail">
+            				<img src="/DtShopping/static/img/mainimg/mi1.png" alt="通用的占位符缩略图">
+            					<div class="caption">
+                					一些示例文本。
+                					<br/>一些示例文本。
+            					</div>
+        				</div>
+    				</div>
+				</div>
+			</div>	
+		</div>
+</html>

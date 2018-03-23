@@ -1,0 +1,271 @@
+package dao;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import model.Manager;
+import model.Order;
+import model.OrderGoodsAll;
+import model.User;
+import utils.odbcUtils;
+
+public class AfterUserOrderDaoImpl {
+     public List QueryOrderlist(){
+    	 List<Order> list=null;
+    	 String sql="SELECT o.order_id,u.realname,g.goodsname,o.carcount,o.orderprice,case o.state WHEN 0 then '未付款' else '已付款' END state ,case o.orderstate WHEN 0 then '未发货' else '已发货' END orderstate FROM dt_goods_order AS o, dt_goods AS g, dt_user AS u WHERE o.user_id = u.user_id AND o.goods_id = g.goods_id ";
+    	 ArrayList<HashMap<String, Object>> list1 = odbcUtils.executeQuery(sql, null);
+    	 if(list1.size()>0){ 
+    	     Order order=null;
+    	     list=new ArrayList<Order>();
+  	  	  for(int i=0;i<list1.size();i++){
+  	  		order=new Order();
+  	  	  HashMap map= list1.get(i);
+  		  order.setOrder_id(String.valueOf(map.get("order_id")));
+  		  order.setReman(String.valueOf(map.get("realname")));
+  		  order.setCommname(String.valueOf(map.get("goodsname")));
+  		  order.setCount(String.valueOf(map.get("carcount")));
+  		  order.setOrdermoney(String.valueOf(map.get("orderprice")));
+  		  order.setPaystatus(String.valueOf(map.get("state")));
+  		  order.setOrderstatus(String.valueOf(map.get("orderstate")));
+  		  list.add(order);
+    	
+     }
+    	 }
+  	  	 return list; 
+}
+     
+     public OrderGoodsAll QueryOrderlistBack(String id){
+    	 
+    	 String sql="SELECT o.order_id,u.realname,g.goodsname,o.carcount,o.orderprice,o.goodsprice,o.orderdate,u.telphone,a.address,p.goodsimg1,case o.state WHEN 0 then '未付款' else '已付款' END state ,case o.orderstate WHEN 0 then '未发货' else '已发货' END orderstate FROM dt_goods_order AS o, dt_goods AS g, dt_user AS u ,dt_address AS a ,dt_photo AS p WHERE o.user_id = u.user_id AND o.goods_id = g.goods_id AND a.address_id=o.address_id AND p.goods_id=g.goods_id and o.order_id=?";
+    	 ArrayList<HashMap<String, Object>> list1 = odbcUtils.executeQuery(sql, new String[]{id});
+    	 OrderGoodsAll order=null;
+    	 if(list1.size()>0){ 
+          HashMap map= list1.get(0);
+    	  order=new OrderGoodsAll();
+  	  	  order.setOrderid(String.valueOf(map.get("order_id")));
+  		  order.setReman(String.valueOf(map.get("realname")));
+  		  order.setCommname(String.valueOf(map.get("goodsname")));
+  		  order.setCount(String.valueOf(map.get("carcount")));
+  		  order.setOrdermoney(String.valueOf(map.get("orderprice")));
+  		  order.setPaystate(String.valueOf(map.get("state")));
+  		  order.setOrdertime(String.valueOf(map.get("orderdate")));
+  		  order.setOrderstate(String.valueOf(map.get("orderstate")));
+  		  order.setPicture(String.valueOf(map.get("goodsimg1")));
+  		  order.setUseraddress(String.valueOf(map.get("address")));
+  		  order.setUsertel(String.valueOf(map.get("telphone")));
+  		  order.setPrice(String.valueOf(map.get("goodsprice")));
+  		 
+    	
+     }
+    	 return order;
+     }
+  	  	  
+
+     
+     public int updateuserstate(Object []obj){
+         String sql="UPDATE dt_user set state =? WHERE user_id=?";
+         int i=odbcUtils.executeUpdate(sql, obj);
+         odbcUtils.close();
+         return i;
+    	}
+     public int UpdateOrderState(Object []obj){
+         String sql="UPDATE dt_goods_order set orderstate =? WHERE order_id=?";
+         int i=odbcUtils.executeUpdate(sql, obj);
+         odbcUtils.close();
+         return i;
+    	}
+     
+     public List QueryUser(){
+ 		List<User> list=null;
+ 		String sql = "select user_id,username,password,case sex when 0 then '女' else '男' end sex,realname,birthday,email,telphone,picture,case state when 0 then '失效' else '正在使用' end state from dt_user  ";
+ 		ArrayList<HashMap<String, Object>> list1 = odbcUtils.executeQuery(sql, null);
+ 		odbcUtils.close();
+ 		if(list1.size()>0){
+ 		  User user=null;
+ 		  list=new ArrayList<User>();
+    	  	 for(int i=0;i<list1.size();i++){
+    	  	  user=new User();
+    	  	  HashMap map= list1.get(i);
+    		  user.setUser_id(String.valueOf(map.get("user_id")));
+    		  user.setUsername(String.valueOf(map.get("username")));
+    		  user.setPassword(String.valueOf(map.get("password")));
+    		  user.setRealname(String.valueOf(map.get("realname")));
+    		  user.setSex(String.valueOf(map.get("sex")));
+    		  user.setBirthday(String.valueOf(map.get("birthday")));
+    		  user.setEmail(String.valueOf(map.get("email")));
+    		  user.setTelphone(String.valueOf(map.get("telphone")));
+    		  user.setPicture(String.valueOf(map.get("picture")));
+    		  user.setState(String.valueOf(map.get("state")));
+    		  list.add(user);
+    	   }
+   }
+ 		return list;
+ 		}
+ 	public User QueryUserBack(String id){
+ 		
+ 		String sql = "select user_id,username,password,case sex when 0 then '女' else '男' end sex,realname,birthday,email,telphone,picture,case state when 0 then '失效' else '正在使用' end state from dt_user where user_id=? ";
+ 		ArrayList<HashMap<String, Object>> list1 = odbcUtils.executeQuery(sql,new String[]{id});
+ 		odbcUtils.close();
+ 		User user=null;
+ 		if(list1.size()>0){
+ 			 HashMap map= list1.get(0);
+ 			  user=new User();
+    	  	  user.setUser_id(String.valueOf(map.get("user_id")));
+    		  user.setUsername(String.valueOf(map.get("username")));
+    		  user.setPassword(String.valueOf(map.get("password")));
+    		  user.setRealname(String.valueOf(map.get("realname")));
+    		  user.setSex(String.valueOf(map.get("sex")));
+    		  user.setBirthday(String.valueOf(map.get("birthday")));
+    		  user.setEmail(String.valueOf(map.get("email")));
+    		  user.setTelphone(String.valueOf(map.get("telphone")));
+    		  user.setPicture(String.valueOf(map.get("picture")));
+    		  user.setState(String.valueOf(map.get("state")));
+    		  
+    	   
+   }
+ 		return user;
+ 		}
+ 	
+ 	public List QueryUserCondition(String id){
+ 		List<User> list=null;
+ 		String sql = "select user_id,username,password,case sex when 0 then '女' else '男' end sex,realname,birthday,email,telphone,picture,case state when 0 then '失效' else '正在使用' end state from dt_user where user_id=? ";
+ 		ArrayList<HashMap<String, Object>> list1 = odbcUtils.executeQuery(sql,new String[]{id});
+ 		odbcUtils.close();
+ 		if(list1.size()>0){
+ 		  User user=null;
+ 		  list=new ArrayList<User>();
+    	  	 for(int i=0;i<list1.size();i++){
+    	  	  user=new User();
+    	  	  HashMap map= list1.get(i);
+    		  user.setUser_id(String.valueOf(map.get("user_id")));
+    		  user.setUsername(String.valueOf(map.get("username")));
+    		  user.setPassword(String.valueOf(map.get("password")));
+    		  user.setRealname(String.valueOf(map.get("realname")));
+    		  user.setSex(String.valueOf(map.get("sex")));
+    		  user.setBirthday(String.valueOf(map.get("birthday")));
+    		  user.setEmail(String.valueOf(map.get("email")));
+    		  user.setTelphone(String.valueOf(map.get("telphone")));
+    		  user.setPicture(String.valueOf(map.get("picture")));
+    		  user.setState(String.valueOf(map.get("state")));
+    		  list.add(user);
+    	   }
+   }
+ 		return list;
+ 		}
+ 	public List QueryOrderCondition(Object []obj){
+ 		List<Order> list=null;
+ 		String sql = "SELECT p.order_id,p.realname,p.goodsname,p.carcount,p.orderprice,case state WHEN 0 then '未付款' else '已付款' END state ,case orderstate WHEN 0 then '未发货' else '已发货' END orderstate FROM (SELECT o.order_id,u.realname,g.goodsname,o.carcount,o.orderprice,o.state,o.orderstate FROM dt_goods_order AS o, dt_goods AS g, dt_user AS u WHERE o.user_id = u.user_id AND o.goods_id = g.goods_id) AS p where p.realname=? || p.state=? || p.orderstate=?";
+ 		ArrayList<HashMap<String, Object>> list1 = odbcUtils.executeQuery(sql,obj);
+ 		  if(list1.size()>0){ 
+   	        Order order=null;
+   	      list=new ArrayList<Order>();
+ 	  	  for(int i=0;i<list1.size();i++){
+ 	  		order=new Order();
+ 	  	  HashMap map= list1.get(i);
+ 		  order.setOrder_id(String.valueOf(map.get("order_id")));
+ 		  order.setReman(String.valueOf(map.get("realname")));
+ 		  order.setCommname(String.valueOf(map.get("goodsname")));
+ 		  order.setCount(String.valueOf(map.get("carcount")));
+ 		  order.setOrdermoney(String.valueOf(map.get("orderprice")));
+ 		  order.setPaystatus(String.valueOf(map.get("state")));
+ 		  order.setOrderstatus(String.valueOf(map.get("orderstate")));
+ 		  list.add(order);
+   	
+    }
+   	 }
+ 	  	 return list; 
+
+ 	}
+ 	
+ 	public Manager QueryManager(Object[]obj){
+ 		
+ 		String sql = "select * from dt_manager where username=? and password=? ";
+ 		ArrayList<HashMap<String, Object>> list1 = odbcUtils.executeQuery(sql, obj);
+ 		odbcUtils.close();
+ 		Manager manager=null;
+ 		if(list1.size()>0){
+ 			HashMap map= list1.get(0);
+    	  	manager=new Manager();
+    	  	manager.setManagerid(String.valueOf(map.get("manager_id")));
+    	  	manager.setUsername(String.valueOf(map.get("username")));
+    	  	manager.setPassword(String.valueOf(map.get("password")));
+    	  	manager.setRealname(String.valueOf(map.get("realname")));
+    	  	manager.setEmail(String.valueOf(map.get("email")));
+			manager.setPermission(String.valueOf(map.get("permission")));
+			manager.setPhoto(String.valueOf(map.get("photo")));
+			manager.setBoonday(String.valueOf(map.get("boonday")));
+			manager.setLastlogen(String.valueOf(map.get("lastlogen")));
+			manager.setState(String.valueOf(map.get("status")));
+			System.out.println("houtai"+map.get("status"));
+    	  		  	 
+ 		}
+ 		
+ 		if(manager!=null){
+
+ 	 		String sql1 = "update dt_manager set lastlogen=SYSDATE() WHERE username=?";
+ 	 		Object[] params = {obj[0]};
+ 	 		odbcUtils.executeUpdate(sql1, params);
+ 	 		odbcUtils.close();
+ 			
+ 		}
+ 		return manager;
+ 		
+ 		}
+ 	
+ 	public HashMap CountOrder(){
+ 		HashMap map=new HashMap(); 
+ 		String sql = "select * from dt_goods_order where state=1 and orderstate=1 ";
+ 		String sql1 = "select * from dt_goods_order where state=1 and orderstate=0 ";
+ 		String sql2 = "select * from dt_goods_order where state=0 and orderstate=0 ";
+ 		String sql3 = "select * from dt_goods ";
+ 		String sql4 = "select * from dt_goods where goods_typeid between 1 and 17 ";
+ 		String sql5 = "select * from dt_goods where goods_typeid between 18 and 19 ";
+ 		String sql6 = "select * from dt_goods where goods_typeid=20 ";
+ 		String sql7 = "select * from dt_goods where goods_typeid between 21 and 26  ";
+ 		String sql8 = "select * from dt_user ";
+ 		String sql9 = "select DISTINCT(user_id) FROM dt_goods_order ";
+ 		String sql10 = "select count(user_id) AS a FROM dt_goods_order  GROUP BY user_id HAVING a>1  ";
+ 		String sql11 = "SELECT * from dt_user WHERE user_id NOT IN (select DISTINCT(user_id) from dt_goods_order )  ";
+ 		ArrayList<HashMap<String, Object>> list1 = odbcUtils.executeQuery(sql, null);
+ 		ArrayList<HashMap<String, Object>> list2 = odbcUtils.executeQuery(sql1, null);
+ 		ArrayList<HashMap<String, Object>> list3 = odbcUtils.executeQuery(sql2, null);
+ 		ArrayList<HashMap<String, Object>> list4 = odbcUtils.executeQuery(sql3, null);
+ 		ArrayList<HashMap<String, Object>> list5 = odbcUtils.executeQuery(sql4, null);
+ 		ArrayList<HashMap<String, Object>> list6 = odbcUtils.executeQuery(sql5, null);
+ 		ArrayList<HashMap<String, Object>> list7 = odbcUtils.executeQuery(sql6, null);
+ 		ArrayList<HashMap<String, Object>> list8 = odbcUtils.executeQuery(sql7, null);
+ 		ArrayList<HashMap<String, Object>> list9 = odbcUtils.executeQuery(sql8, null);
+ 		ArrayList<HashMap<String, Object>> list10 = odbcUtils.executeQuery(sql9, null);
+ 		ArrayList<HashMap<String, Object>> list11 = odbcUtils.executeQuery(sql10, null);
+ 		ArrayList<HashMap<String, Object>> list12 = odbcUtils.executeQuery(sql11, null);
+ 		int ycjdd=list1.size();
+ 		int dfhdd=list2.size();
+ 		int wqrdd=list3.size();
+ 		int spzzl=list4.size();
+ 		int sjl=list5.size();
+ 		int dnl=list6.size();
+ 		int lyql=list7.size();
+ 		int qtl=list8.size();
+ 		int zcyh=list9.size();
+ 		int xgdyh=list10.size();
+ 		int zsyh=list11.size();
+ 		int wxdyh=list12.size();
+ 		map.put("ycjdd", ycjdd);
+ 		map.put("dfhdd", dfhdd);
+ 		map.put("wqrdd", wqrdd);
+ 		map.put("spzzl", spzzl);
+ 		map.put("sjl", sjl);
+ 		map.put("dnl", dnl);
+ 		map.put("lyql", lyql);
+ 		map.put("qtl", qtl);
+ 		map.put("zcyh", zcyh);
+ 		map.put("xgdyh", xgdyh);
+ 		map.put("zsyh", zsyh);
+ 		map.put("wxdyh", wxdyh);
+ 		return map;
+ 		
+ 	}
+ 	
+}

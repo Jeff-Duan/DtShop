@@ -1,0 +1,37 @@
+package service;
+
+import dao.ManagerDaoImpl;
+import model.Manager;
+
+public class UpdataManagerService {
+	//更新管理员
+	public int updataManager(Manager manager){
+		int i=0;
+		ManagerDaoImpl managerDaoImpl=new ManagerDaoImpl();
+		i=managerDaoImpl.updataManager(manager);
+		return i;
+	}
+	//添加管理员
+	public int addManager(Manager manager){
+		int i =0;
+		ManagerDaoImpl managerDaoImpl=new ManagerDaoImpl();
+		i=managerDaoImpl.addManager(manager);
+		return i;
+	}
+	
+	//更新个人信息
+	public int updataMyInfoService(Manager manager){
+		int i=0;
+		ManagerDaoImpl managerDaoImpl=new ManagerDaoImpl();	
+		i=managerDaoImpl.updataMyInfo(manager);
+		return i;
+	}
+	
+	//修改密码
+	public int updataMyPassword(Object []params){
+		int i=0;
+		ManagerDaoImpl ManagerDaoImpl=new ManagerDaoImpl();
+		i=ManagerDaoImpl.uptateMyPassword(params);
+		return i;
+	}
+}

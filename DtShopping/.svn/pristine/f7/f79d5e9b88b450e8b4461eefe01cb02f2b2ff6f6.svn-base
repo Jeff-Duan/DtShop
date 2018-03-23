@@ -1,0 +1,14 @@
+package service;
+
+import dao.GoodDaoImpl;
+import model.Good;
+
+public class UpdataGoodService {
+	//修改商品信息
+	public int updataGood(Good good){
+		int i=0;
+		GoodDaoImpl goodDaoImpl=new GoodDaoImpl();
+		i=goodDaoImpl.updataGood(good);
+		return i;
+	}
+}

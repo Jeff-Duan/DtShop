@@ -1,0 +1,61 @@
+<%@ page language="java"  import="java.util.*" import="model.User"  contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib  uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>会员列表</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="${pageContext.request.contextPath}/static/css/after/adminStyle.css" rel="stylesheet" type="text/css" />
+<script src="${pageContext.request.contextPath}/static/js/after/jquery.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/after/public.js"></script>
+</head>
+<body>
+ <div class="wrap">
+  <div class="page-title">
+    <span class="modular fl"><i class="user"></i><em>会员列表</em></span>
+   
+  </div>
+  <table class="list-style Interlaced">
+   <tr>
+     <th>编号</th>
+     <th>昵称</th>
+     <th>密码</th>
+     <th>姓名</th>
+     <th>性别</th>
+     <th>出生日期</th>
+     <th>邮箱</th>
+     <th>手机</th>
+     <th>头像</th>
+     <th>状态</th>
+     <th>操作</th>
+    </tr>
+   <%
+		 User user=(User)request.getAttribute("user");
+      %>
+   <tr>
+   <td class="center">${requestScope.user.user_id}</td>
+   <td class="center">${requestScope.user.username}</td>
+   <td class="center">${requestScope.user.password}</td>
+   <td class="center">${requestScope.user.realname}</td>
+   <td class="center">${requestScope.user.sex}</td>
+   <td class="center">${requestScope.user.birthday}</td>
+   <td class="center">${requestScope.user.email}</td>
+   <td class="center">${requestScope.user.telphone}</td>
+   <td class="center"><img src="${pageContext.request.contextPath}/static/img/after/${requestScope.user.picture}"width="50" height="50" class="img-circle" /></td>
+   <td class="center">${requestScope.user.state}</td>
+   <td class="center">
+   <a href="${pageContext.request.contextPath}/UserBackServlet?id=${requestScope.user.user_id}" class="inline-block" title="编辑"><img src="${pageContext.request.contextPath}/static/img/after/icon_edit.gif"/></a>
+   </td>
+   </tr>
+  
+   
+   </tr>
+  </table>
+  <!-- BatchOperation -->
+  <div style="overflow:hidden;">
+  </div>
+ </div>
+</body>
+</html>
+</html>
